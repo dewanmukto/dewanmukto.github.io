@@ -8,7 +8,7 @@ export class QRCodeManager {
     const { default: QRCode } = await import('https://cdn.skypack.dev/qrcode');
     
     const peerId = stateManager.getStateValue('user.id');
-    const inviteUrl = `${window.location.origin}/disorder?id=${peerId}`;
+    const inviteUrl = `${window.location.origin}/web/disorder?id=${peerId}`;
     
     const modal = this.createQRModal();
     document.body.appendChild(modal);
@@ -34,7 +34,7 @@ export class QRCodeManager {
 
   static createQRModal() {
     const peerId = stateManager.getStateValue('user.id');
-    const inviteUrl = `${window.location.origin}/disorder?id=${peerId}`;
+    const inviteUrl = `${window.location.origin}/web/disorder?id=${peerId}`;
     
     const modal = document.createElement('div');
     modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50';

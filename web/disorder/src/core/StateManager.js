@@ -7,7 +7,7 @@ class StateManager {
       user: {
         id: null,
         username: `Stranger #${Math.floor(1000 + Math.random() * 9000)}`,
-        avatar: '/assets/images/blue.jpg',
+        avatar: '/asset/images/callmux.jpg',
         status: 'online',
         customStatus: null
       },
@@ -72,7 +72,7 @@ class StateManager {
     this.state.peers[peerId] = {
       id: peerId,
       username: peerData.username || peerId,
-      avatar: peerData.avatar || '/assets/images/blue.jpg',
+      avatar: peerData.avatar || '/asset/images/callmux.jpg',
       status: 'online',
       joinedAt: new Date(),
       messageCount: 0,
