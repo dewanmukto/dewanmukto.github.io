@@ -1,0 +1,298 @@
+[
+    {
+        "SL": 1,
+        "Activity": "E- Game development",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-601",
+        "Instructor": "Shishir Kumar Das",
+        "DormSupervisor": "Md. Belal Hossain"
+    },
+    {
+        "SL": 2,
+        "Activity": "Japanese Language Section 1",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-602",
+        "Instructor": "Md. Mehedi Hasan Santo",
+        "DormSupervisor": "Ms. Sufia Sharmin"
+    },
+    {
+        "SL": 3,
+        "Activity": "Japanese Language Section 2",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-603",
+        "Instructor": "Khalid Saifullah",
+        "DormSupervisor": "Ms. Nasrin Sultana Bristy"
+    },
+    {
+        "SL": 4,
+        "Activity": "Guitar playing- Beginner level",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-604",
+        "Instructor": "Afif Ibna Kadir Khan Turjo",
+        "DormSupervisor": "Md. Jashim Uddin Bhuiyan"
+    },
+    {
+        "SL": 5,
+        "Activity": "Graphics Design- Beginner level Section 1",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-605",
+        "Instructor": "Arif Ullah",
+        "DormSupervisor": "Mr. Bikash Kumar Biswas"
+    },
+    {
+        "SL": 6,
+        "Activity": "Graphics Design- Beginner level Section 2",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-606",
+        "Instructor": "Masnoon Wafee Imam",
+        "DormSupervisor": "Mr. Hafiz-ul Islam Khan"
+    },
+    {
+        "SL": 7,
+        "Activity": "Youth Leadership",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-607",
+        "Instructor": "Fariha Tahsin",
+        "DormSupervisor": "Mr. Khokon Goala"
+    },
+    {
+        "SL": 8,
+        "Activity": "TV News Presentation",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-501",
+        "Instructor": "Rehana Perween",
+        "DormSupervisor": "Ms. Atia Ibnat Sritee"
+    },
+    {
+        "SL": 9,
+        "Activity": "Stage Drama",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-502",
+        "Instructor": "Kamruzzaman Tapu",
+        "DormSupervisor": "Md. Harun Or Rashid"
+    },
+    {
+        "SL": 10,
+        "Activity": "Dance",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-503",
+        "Instructor": "Shukla Roy",
+        "DormSupervisor": "Most Mafruha Akter Lisa"
+    },
+    {
+        "SL": 11,
+        "Activity": "German Language",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-504",
+        "Instructor": "Ashraf-uz-Zaman Sarker",
+        "DormSupervisor": "Ms. Sufia Sharmin"
+    },
+    {
+        "SL": 12,
+        "Activity": "French Language",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-505",
+        "Instructor": "Md. Abdus Salam Sarker",
+        "DormSupervisor": "Mr. Hafiz-ul Islam Khan"
+    },
+    {
+        "SL": 13,
+        "Activity": "Presentation Skills Section 1",
+        "ClassTime": "9:30am-10:30am",
+        "Venue": "OB-506",
+        "Instructor": "Mr. Mir Ryan",
+        "DormSupervisor": "Most Mafruha Akter Lisa"
+    },
+    {
+        "SL": 14,
+        "Activity": "Presentation Skills Section 2",
+        "ClassTime": "10:30am-11:30am",
+        "Venue": "OB-507",
+        "Instructor": "Mr. Mir Ryan",
+        "DormSupervisor": "Mr. Manoj Kumar Halder"
+    },
+    {
+        "SL": 15,
+        "Activity": "App Development",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-508",
+        "Instructor": "Syed Zuhair Hossain",
+        "DormSupervisor": "Ms. Mohima Khatun"
+    },
+    {
+        "SL": 16,
+        "Activity": "Guitar Playing Advanced Level",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-401",
+        "Instructor": "Mr. Ejab Mahmud",
+        "DormSupervisor": "Mr. Manoj Kumar Halder"
+    },
+    {
+        "SL": 17,
+        "Activity": "Graphics Design- Advanced level",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-402",
+        "Instructor": "Md. Naim Afzal",
+        "DormSupervisor": "Md. Harun Or Rashid"
+    },
+    {
+        "SL": 18,
+        "Activity": "Photography",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-403",
+        "Instructor": "Zuhayer Anjum Prottoy",
+        "DormSupervisor": "Mr. Bikash Kumar Biswas"
+    },
+    {
+        "SL": 19,
+        "Activity": "Basics of Robotics",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-404",
+        "Instructor": "Fardeen Khan",
+        "DormSupervisor": "Ms. Nazmunnahar Laizu"
+    },
+    {
+        "SL": 20,
+        "Activity": "Drawing and Sketching Beginner level",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-405",
+        "Instructor": "Md. Mohimin Al Bhuiyan",
+        "DormSupervisor": "Mr. Sezan Mahmud"
+    },
+    {
+        "SL": 21,
+        "Activity": "Drawing and Sketching Advanced level",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-406",
+        "Instructor": "Abrar Ehsan Nihal",
+        "DormSupervisor": "Mr. Sezan Mahmud"
+    },
+    {
+        "SL": 22,
+        "Activity": "Painting/ Folk art",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-407",
+        "Instructor": "Ferdous Bin Masud",
+        "DormSupervisor": "Mr. Khokon Goala"
+    },
+    {
+        "SL": 23,
+        "Activity": "Digital Marketing",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-408",
+        "Instructor": "Muhtasim Fuad Rafsun",
+        "DormSupervisor": "Md. Arif Munshi"
+    },
+    {
+        "SL": 24,
+        "Activity": "Jewellery Making section 1",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-301",
+        "Instructor": "Rubayat Husain Ipshita",
+        "DormSupervisor": "Ms. Meem Yea Tasnim"
+    },
+    {
+        "SL": 25,
+        "Activity": "Jewellery Making section 2",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-302",
+        "Instructor": "Dipto Acharjee",
+        "DormSupervisor": "Ms. Meem Yea Tasnim"
+    },
+    {
+        "SL": 26,
+        "Activity": "Batik Design",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-303",
+        "Instructor": "Mohona Bashar",
+        "DormSupervisor": "Ms. Nazmunnahar Laizu"
+    },
+    {
+        "SL": 27,
+        "Activity": "Glass Painting Section 1",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-304",
+        "Instructor": "Mashayat Rounak",
+        "DormSupervisor": "Ms. Imrana Jahan Erina"
+    },
+    {
+        "SL": 28,
+        "Activity": "Glass Painting Section 2",
+        "ClassTime": "9:30am-11am",
+        "Venue": "OB-305",
+        "Instructor": "ROCHONA AKTER RATTRY",
+        "DormSupervisor": "Ms. Imrana Jahan Erina"
+    },
+    {
+        "SL": 29,
+        "Activity": "Web Development Advanced Level",
+        "ClassTime": "9:00am-10am",
+        "Venue": "Computer Lab",
+        "Instructor": "Faiaz Khan Soumik",
+        "DormSupervisor": "Md. Jashim Uddin Bhuiyan"
+    },
+    {
+        "SL": 30,
+        "Activity": "Animated Film Making - Beginner Level",
+        "ClassTime": "10:00am-11:30am",
+        "Venue": "Computer Lab",
+        "Instructor": "Farjan Shahriar Abeg",
+        "DormSupervisor": "Md. Nur Alam Ananto"
+    },
+    {
+        "SL": 31,
+        "Activity": "Web Development Beginner Level section-1",
+        "ClassTime": "9:30am-10:30am",
+        "Venue": "OB-103",
+        "Instructor": "Md Danial Islam",
+        "DormSupervisor": "Ms. Tasnia Afroze"
+    },
+    {
+        "SL": 32,
+        "Activity": "Web development Beginner Level section-2",
+        "ClassTime": "10:30am-11:30am",
+        "Venue": "OB-103",
+        "Instructor": "Md Danial Islam",
+        "DormSupervisor": "Ms. Tasnia Afroze"
+    },
+    {
+        "SL": 33,
+        "Activity": "Competitive Programming",
+        "ClassTime": "10:10am-11:10am",
+        "Venue": "OB-104",
+        "Instructor": "Faiaz Khan Soumik",
+        "DormSupervisor": "Ms. Atia Ibnat Sritee"
+    },
+    {
+        "SL": 34,
+        "Activity": "Taekwondo( Male)",
+        "ClassTime": "9:30am-11am",
+        "Venue": "Anondopur",
+        "Instructor": "Shankor Kumar roy",
+        "DormSupervisor": "Md. Arif Munshi"
+    },
+    {
+        "SL": 35,
+        "Activity": "Zumba",
+        "ClassTime": "9:30am-10:30am",
+        "Venue": "OB basement canteen",
+        "Instructor": "Farhana Sanji",
+        "DormSupervisor": "Ms. Mohima Khatun"
+    },
+    {
+        "SL": 36,
+        "Activity": "Yoga & Meditation Female",
+        "ClassTime": "9:15am-10:15am",
+        "Venue": "Markuli hall (Sulla)",
+        "Instructor": "Humayara sharmin",
+        "DormSupervisor": "Ms. Nasrin Sultana Bristy"
+    },
+    {
+        "SL": 37,
+        "Activity": "Yoga & Meditation Male",
+        "ClassTime": "10:30am-11:30am",
+        "Venue": "Markuli hall (Sulla)",
+        "Instructor": "Ashis Adhikary",
+        "DormSupervisor": "Md. Belal Hossain"
+    }
+]

@@ -1,0 +1,346 @@
+/* Main Styles - Core Layout and Base Styles */
+
+:root {
+  --primary-yellow: #ffd700;
+  --secondary-black: #0a0a0a;
+  --accent-yellow: #ffed4e;
+  --accent-orange: #ff8c00;
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #666666;
+  --border-yellow: rgba(255, 215, 0, 0.3);
+  --shadow-yellow: 0 0 20px rgba(255, 215, 0, 0.4);
+  
+  /* Faction Colors */
+  --mbc-color: #ffd700;
+  --miw-color: #dc2626;
+  --usmc-color: #16a34a;
+  --n5474-color: #9333ea;
+  --other-color: #2563eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, #1a1a0a 50%, var(--bg-primary) 100%);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMEwxMiAyNE0wIDEyTDI0IDEyIiBzdHJva2U9IiNmZmQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg=='), crosshair;
+  position: relative;
+}
+
+/* Diagonal Background */
+.diagonal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  overflow: hidden;
+  opacity: 0.1;
+}
+
+.diagonal-text-layer {
+  position: absolute;
+  width: 200%;
+  height: 100vh;
+  transform: rotate(-45deg);
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 8rem;
+  line-height: 1.2;
+  color: var(--primary-yellow);
+  white-space: nowrap;
+  animation: scrollDiagonal 30s linear infinite;
+}
+
+.diagonal-text-layer:nth-child(2) {
+  top: 20%;
+  font-size: 6rem;
+  color: var(--accent-orange);
+  animation-duration: 25s;
+  animation-direction: reverse;
+}
+
+.diagonal-text-layer:nth-child(3) {
+  top: 40%;
+  font-size: 4rem;
+  color: var(--accent-yellow);
+  animation-duration: 35s;
+}
+
+/* Tessellation Tiles */
+.tessellation-tiles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(255, 215, 0, 0.05) 20px,
+      rgba(255, 215, 0, 0.05) 40px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 30px,
+      rgba(255, 215, 0, 0.03) 30px,
+      rgba(255, 215, 0, 0.03) 60px
+    );
+  transition: all 0.5s ease;
+}
+
+.tessellation-tiles.mbc {
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(255, 215, 0, 0.2) 20px,
+      rgba(255, 215, 0, 0.2) 40px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 30px,
+      rgba(255, 215, 0, 0.1) 30px,
+      rgba(255, 215, 0, 0.1) 60px
+    );
+}
+
+.tessellation-tiles.miw {
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(220, 38, 38, 0.2) 20px,
+      rgba(220, 38, 38, 0.2) 40px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 30px,
+      rgba(220, 38, 38, 0.1) 30px,
+      rgba(220, 38, 38, 0.1) 60px
+    );
+}
+
+.tessellation-tiles.usmc {
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(22, 163, 74, 0.2) 20px,
+      rgba(22, 163, 74, 0.2) 40px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 30px,
+      rgba(22, 163, 74, 0.1) 30px,
+      rgba(22, 163, 74, 0.1) 60px
+    );
+}
+
+.tessellation-tiles.n5474 {
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(147, 51, 234, 0.2) 20px,
+      rgba(147, 51, 234, 0.2) 40px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 30px,
+      rgba(147, 51, 234, 0.1) 30px,
+      rgba(147, 51, 234, 0.1) 60px
+    );
+}
+
+.tessellation-tiles.other {
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(37, 99, 235, 0.2) 20px,
+      rgba(37, 99, 235, 0.2) 40px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 30px,
+      rgba(37, 99, 235, 0.1) 30px,
+      rgba(37, 99, 235, 0.1) 60px
+    );
+}
+
+/* Particle Canvas */
+#particleCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.9) 0%, transparent 100%);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  font-family: 'Orbitron', monospace;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--primary-yellow);
+  text-shadow: 0 0 20px var(--primary-yellow);
+  line-height: 0.8;
+}
+
+.header-center {
+  position: absolute;
+  left: 50%;
+  top: 2rem;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sci-fi-shapes {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.shape {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--primary-yellow);
+  position: relative;
+}
+
+.shape-1 {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  animation: shapeRotate 4s linear infinite;
+}
+
+.shape-2 {
+  border-radius: 50%;
+  animation: shapePulse 3s ease-in-out infinite;
+}
+
+.shape-3 {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  animation: shapeRotate 5s linear infinite reverse;
+}
+
+.section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-yellow);
+  text-shadow: 0 0 15px var(--primary-yellow);
+  letter-spacing: 0.2em;
+}
+
+/* Character Grid */
+.character-grid {
+  padding: 8rem 2rem 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.hex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hex-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.hex-row.offset {
+  transform: translateX(90px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .header-center {
+    position: static;
+    transform: none;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .character-grid {
+    padding: 6rem 1rem 2rem;
+  }
+  
+  .hex-row.offset {
+    transform: translateX(45px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hex-row.offset {
+    transform: translateX(0);
+  }
+  
+  .hex-row {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "programming_skills": [
+    "Python",
+    "Java",
+    "C",
+    "Fortran",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Node.js",
+    "MongoDB",
+    "PHP",
+    "MySQL",
+    "PostgreSQL",
+    "Lua",
+    "Kotlin"
+  ],
+  "technical_skills": [
+    "Microsoft Office (Software)",
+    "Canva (Platform)",
+    "Google Analytics (Platform)",
+    "WordPress (Platform)",
+    "Wix (Platform)",
+    "Webflow (Platform)",
+    "Bubble.io (Platform)",
+    "Search Engine Optimization",
+    "Domain/DNS Maintenance",
+    "App Development (Android Java, Kotlin)",
+    "Web Development",
+    "UI/UX Design",
+    "Figma (Platform)",
+    "Git (Technology)",
+    "Linux (OS)"
+  ],
+  "business_skills": [
+    "Brand Marketing",
+    "Customer Satisfaction",
+    "Customer Engagement",
+    "Copywriting",
+    "Project Management",
+    "Product Design",
+    "Digital Marketing"
+  ],
+  "passive_skills": [
+    "Research & Development",
+    "Social & Interpersonal Skills",
+    "Leadership",
+    "Customer Service",
+    "Storytelling",
+    "Teaching",
+    "Cooking",
+    "Motivational Speaking",
+    "Creativity",
+    "Critical & Analytical Thinking",
+    "Statistical Analysis",
+    "Devotion",
+    "Punctuality"
+  ]
+}

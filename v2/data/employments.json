@@ -1,0 +1,134 @@
+[
+  {
+    "company": "Pathantula Govt Primary School",
+    "role": "English Language Teacher",
+    "start_date": "April 2018",
+    "end_date": "November 2018",
+    "location": {
+      "city": "Sylhet",
+      "country": "Bangladesh 🇧🇩"
+    },
+    "industry": "Education",
+    "department": "Teaching"
+  },
+  {
+    "company": "Mux Anime Studios",
+    "role": ["Director", "Animator", "Marketing Strategist", "Recruiter"],
+    "start_date": "November 2019",
+    "end_date": "February 2022",
+    "location": {
+      "city": "Remote",
+      "country": "Bangladesh 🇧🇩"
+    },
+    "industry": "Entertainment",
+    "department": "Animation"
+  },
+  {
+    "company": "Bongojukti",
+    "role": "Founder",
+    "start_date": "February 2020",
+    "end_date": "Present",
+    "location": {
+      "city": "Dhaka",
+      "country": "Bangladesh 🇧🇩"
+    },
+    "industry": "Technology",
+    "department": "Websites & Apps"
+  },
+  {
+    "company": "Dewan IELTS",
+    "role": "IELTS Trainer",
+    "start_date": "January 2021",
+    "end_date": "February 2022",
+    "location": {
+      "city": "Remote",
+      "country": "Bangladesh 🇧🇩"
+    },
+    "industry": "Education",
+    "department": "Training"
+  },
+  {
+    "company": "Mark's",
+    "role": "Sales Associate",
+    "start_date": "October 2021",
+    "end_date": "February 2022",
+    "location": {
+      "city": "St. John's",
+      "country": "Canada 🇨🇦"
+    },
+    "industry": "Retail",
+    "department": "Clothing"
+  },
+  {
+    "company": "The MUSE",
+    "role": "Writer",
+    "start_date": "January 2022",
+    "end_date": "April 2022",
+    "location": {
+      "city": "St. John's",
+      "country": "Canada 🇨🇦"
+    },
+    "industry": "Journalism",
+    "department": "News"
+  },
+  {
+    "company": "Jungle Jim's Eatery",
+    "role": "Kitchen Helper",
+    "start_date": "June 2022",
+    "end_date": "August 2022",
+    "location": {
+      "city": "St. John's",
+      "country": "Canada 🇨🇦"
+    },
+    "industry": "Culinary",
+    "department": "Restaurant"
+  },
+  {
+    "company": "Mark's",
+    "role": "Sales Associate",
+    "start_date": "July 2022",
+    "end_date": "August 2022",
+    "location": {
+      "city": "St. John's",
+      "country": "Canada 🇨🇦"
+    },
+    "industry": "Retail",
+    "department": "Clothing"
+  },
+  {
+    "company": "Sherwin-Williams",
+    "role": "Sales Associate",
+    "start_date": "July 2022",
+    "end_date": "June 2023",
+    "location": {
+      "city": "St. John's",
+      "country": "Canada 🇨🇦"
+    },
+    "industry": "Retail/Wholesale",
+    "department": "Paint & Chemicals"
+  },
+  {
+    "company": "Mux AI",
+    "role": ["Web Developer", "Software Developer", "Marketing Strategist", "Graphic Designer", "UI/UX Designer"],
+    "start_date": "July 2023",
+    "end_date": "Present",
+    "location": {
+      "city": "Remote",
+      "country": "Bangladesh 🇧🇩"
+    },
+    "industry": "Technology",
+    "department": "Websites & Apps"
+  },
+  {
+    "company": "Mux Games",
+    "role": "Roblox/Lua Game Developer",
+    "start_date": "June 2024",
+    "end_date": "Present",
+    "location": {
+      "city": "Remote",
+      "country": "Bangladesh 🇧🇩"
+    },
+    "industry": "Game Development",
+    "department": "Roblox"
+  }
+]

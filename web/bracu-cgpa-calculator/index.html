@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CGPA Calculator for BRACU</title>
+    <meta name="description" content="Dynamic and real-time CGPA Calculator with PDF support for BRACU Connect." />
+    <meta name="keywords" content="bracu cgpa calculator, bracu cgpa tool, brac university grades, bracu pdf transcript" />
+    <meta name="author" content="MuxAI" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="CGPA Calculator" />
+    <meta property="og:description" content="Dynamic and real-time CGPA Calculator with PDF support for BRACU Connect." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brax.mux8.com/" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RPZ4MV3EYK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-RPZ4MV3EYK');
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+       .shine-button {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+    transform: skewX(-20deg);
+  }
+  .shine-button:hover::before {
+    animation: shine 0.75s forwards;
+  }
+  @keyframes shine {
+    0% {
+      left: -75%;
+    }
+    100% {
+      left: 125%;
+    }
+  }
+    </style>
+  </head>
+
+  <body class="bg-gradient-to-r from-slate-100 to-slate-200 min-h-screen flex items-center justify-center px-4">
+    <main class="w-full max-w-3xl bg-white rounded-3xl shadow-xl p-8 sm:p-10 space-y-6">
+      <!-- Header -->
+      <header class="text-center">
+        <h1 class="text-3xl sm:text-4xl font-bold text-slate-800">CGPA Calculator</h1>
+        <p class="text-slate-600 mt-1 text-base sm:text-lg">Modify and estimate CGPA and marks. Everything is auto-calculated.</p>
+      </header>
+
+      <!-- Custom Boundaries -->
+      <section id="custom-boundaries" class="hidden">
+        <h2 class="text-lg font-semibold text-slate-700 mb-2">Custom Grade Boundaries</h2>
+        <textarea
+          id="custom-boundary-text"
+          placeholder="Example:&#10;90:A:4.0&#10;80:B:3.0"
+          class="w-full h-32 resize-none rounded-md border border-slate-300 p-3 font-mono text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        ></textarea>
+        <button
+          onclick="applyCustomBoundaries()"
+          class="mt-3 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md text-sm font-medium"
+        >
+          Apply Boundaries
+        </button>
+      </section>
+
+      <!-- Actions -->
+      <section class="space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <button
+            onclick="addSemester()"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium"
+          >
+            + Add Semester
+          </button>
+
+          <div class="text-sm text-slate-700">
+            or Upload from
+            <a
+              href="https://connect.bracu.ac.bd/"
+              class="underline text-blue-700 hover:text-blue-900"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Connect</a
+            >:
+            <label
+  for="pdf-upload"
+  class="ml-2 inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white font-medium px-4 py-2 rounded-md cursor-pointer transition-transform duration-200 hover:scale-105 shadow hover:shadow-lg shine-button"
+>
+  Upload PDF
+</label>
+    <input
+      id="pdf-upload"
+      type="file"
+      accept="application/pdf"
+      onchange="handlePDF(event)"
+      class="hidden"
+    />
+          </div>
+        </div>
+      </section>
+
+      <!-- Semesters Container -->
+      <section id="semesters" class="space-y-6"></section>
+
+      <!-- CGPA Result -->
+      <footer class="border-t pt-4 text-center">
+        <h2 id="cgpa-display" class="text-2xl font-semibold text-blue-700">CGPA: 0.00</h2>
+      </footer>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <script src="algorithms.js"></script>
+  </body>
+</html>

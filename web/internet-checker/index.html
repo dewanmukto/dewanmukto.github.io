@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netstate - Internet Checker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Netstate</h1>
+        <p>Information about your current connection:</p>
+
+        <div id="status" class="card">
+            <h2>Network type:</h2>
+            <p id="connection-status">Checking...</p>
+            <ul>
+                <li><strong>Browser and OS:</strong><br> <span id="user-agent">--</span></li>
+            </ul>
+        </div>
+
+        <div id="details" class="card">
+            <h2>About this network:</h2>
+            <ul>
+                <li><strong>Connection type:</strong> <span id="connection-type">--</span></li>
+                <li><strong>Download Speed:</strong> <span id="downlink-speed">--</span> Mbps</li>
+                <li><strong>Ping (Latency):</strong> <span id="latency">--</span> ms</li>
+                <li><strong>Public IP address:</strong> <span id="ip-address">--</span></li>
+                <li><strong>Local IP address:</strong> <span id="local-ip-address">--</span> (mDNS)</li>
+                <li><strong>Location:</strong> <span id="ip-location">--</span></li>
+            </ul>
+        </div>
+
+        <div class="chart-container">
+            <h3>Download Speed</h3>
+            <canvas id="speedChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h3>Ping (Latency)</h3>
+            <canvas id="latencyChart"></canvas>
+        </div>
+    </div>
+  <div class="about-panel" onclick="toggleAboutPanel()">About</div>
+    <style>
+      body {
+          font-family: 'Arial', sans-serif;
+          text-align: center;
+          background: #f0fff0;
+          color: #000000;
+          margin: 0;
+          padding: 0;
+      }
+
+      .container {
+          max-width: 600px;
+          margin: 50px auto;
+          padding: 20px;
+      }
+
+      h1 {
+          font-size: 26px;
+          font-weight: bold;
+      }
+
+      .h3 {
+        color: #ffffff;
+      }
+
+      .card {
+          background: #1E1E1E;
+          padding: 16px;
+          margin: 10px 0;
+          border-radius: 24px;
+          text-align: left;
+      }
+
+      .card h2 {
+          font-size: 18px;
+          color: #ffffff;
+          font-weight: bold;
+      }
+
+      .card p, .card li {
+          font-size: 14px;
+          color: #cccccc;
+      }
+
+      .card ul {
+          list-style: none;
+          padding: 0;
+      }
+
+      .chart-container {
+          margin-top: 20px;
+          background: #1E1E1E;
+          padding: 16px;
+          border-radius: 24px;
+          color: #ffffff;
+      }
+
+      canvas {
+          width: 100% !important;
+          height: 200px !important;
+      }
+      .about-panel {
+          position: fixed;
+          bottom: 10px;
+          left: 10px;
+          background: rgba(0, 0, 0, 0.6);
+          padding: 10px 15px;
+          border-radius: 5px;
+          color: #fff;
+          font-size: 12px;
+          z-index: 1000;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          overflow: hidden;
+          white-space: nowrap;
+          max-width: 200px;
+      }
+      
+      .about-panel:hover {
+          padding-right: 25px;
+          background: rgba(0, 0, 0, 0.8);
+      }
+      
+      .about-panel:hover::after {
+          content: ' - this website';
+          color: #aaa;
+      }
+      
+      .about-panel.expanded {
+          max-width: 400px;
+          white-space: normal;
+          padding: 20px;
+      }
+      
+      .about-panel.expanded::after {
+          content: '';
+      }
+      
+      .about-panel a {
+          color: #00e0ff;
+          text-decoration: none;
+          transition: color 0.3s;
+      }
+      
+      .about-panel a:hover {
+          color: #fff;
+      }
+    </style>
+    <script>
+    async function getPublicIP() {
+        try {
+            let response = await fetch("https://api64.ipify.org?format=json", { cache: "no-store" });
+            let data = await response.json();
+            return data.ip;
+        } catch (error) {
+            return "Couldn't find IP";
+        }
+    }
+    async function getLocalIPs() {
+        let ips = [];
+        let pc = new RTCPeerConnection({ iceServers: [] });
+        
+        pc.createDataChannel("");
+        pc.createOffer().then(offer => pc.setLocalDescription(offer));
+    
+        pc.onicecandidate = event => {
+            if (!event || !event.candidate) return;
+            let ip = event.candidate.address;
+            
+            ip = ip.replace(/--/g, "");
+            
+            if (!ips.includes(ip)) {
+                ips.push(ip);
+                document.getElementById("local-ip-address").innerText = `${ip}`;
+            }
+        };
+    }
+    getLocalIPs();
+
+    async function getLocation(ip) {
+        try {
+            let response = await fetch(`https://cors-anywhere.herokuapp.com/https://tools.keycdn.com/geo?host=${ip}`);
+            let html = await response.text();
+            let parser = new DOMParser();
+            let doc = parser.parseFromString(html, 'text/html');
+        
+            let country = doc.querySelector("dd:contains('Country')").textContent.trim();
+            let continent = doc.querySelector("dd:contains('Continent')").textContent.trim();
+            let coordinates = doc.querySelector("dd:contains('Coordinates')").textContent.trim();
+            
+            let location = `${country}, ${continent}, ${coordinates}`;
+            document.getElementById("ip-location").innerText = location;
+        } catch (error) {
+            document.getElementById("ip-location").innerText = "Couldn't find location";
+        }
+    }
+
+
+    let speedData = [];
+    let latencyData = [];
+    let timeLabels = [];
+    
+    const speedCtx = document.getElementById("speedChart").getContext("2d");
+    const latencyCtx = document.getElementById("latencyChart").getContext("2d");
+    const speedChart = new Chart(speedCtx, {
+        type: "line",
+        data: {
+            labels: timeLabels,
+            datasets: [{
+                label: "Bitrate (Mbps)",
+                data: speedData,
+                borderColor: "#1abc9c",
+                borderWidth: 2,
+                fill: false,
+                tension: 0.2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+    
+    const latencyChart = new Chart(latencyCtx, {
+        type: "line",
+        data: {
+            labels: timeLabels,
+            datasets: [{
+                label: "Latency (ms)",
+                data: latencyData,
+                borderColor: "#e74c3c",
+                borderWidth: 2,
+                fill: false,
+                tension: 0.2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+      
+    async function checkNetwork() {
+        let connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection || null;
+        let now = new Date().toLocaleTimeString();
+    
+        document.getElementById("connection-status").innerText = navigator.onLine ? "Connected ✅" : "Disconnected ❌";
+    
+        if (connection && "downlink" in connection && "rtt" in connection) {
+            let speed = connection.downlink || 0;
+            let latency = connection.rtt || 0;
+    
+            document.getElementById("connection-type").innerText = connection.effectiveType ? connection.effectiveType.toUpperCase() : "Unknown";
+            document.getElementById("downlink-speed").innerText = speed.toFixed(2);
+            document.getElementById("latency").innerText = latency;
+
+            if (timeLabels.length >= 10) {
+                timeLabels.shift();
+                speedData.shift();
+                latencyData.shift();
+            }
+            timeLabels.push(now);
+            speedData.push(speed);
+            latencyData.push(latency);
+    
+            speedChart.update();
+            latencyChart.update();
+
+            let ipElement = document.getElementById("ip-address");
+            if (ipElement) {
+                let ip = await getPublicIP();
+                ipElement.innerText = ip;
+                getLocation(ip);
+            }
+            document.getElementById("user-agent").innerText = navigator.userAgent;
+
+        } else {
+            document.getElementById("connection-type").innerText = "Not found";
+            document.getElementById("downlink-speed").innerText = "Not found";
+            document.getElementById("latency").innerText = "Not found";
+        }
+    }
+  
+    setInterval(async () => await checkNetwork(), 1000);
+
+    window.onload = checkNetwork;
+          
+     function toggleAboutPanel() {
+        const aboutPanel = document.querySelector('.about-panel');
+        if (!aboutPanel.classList.contains('expanded')) {
+            aboutPanel.innerHTML = `
+                About - this website
+                <br><br>Made by Stoobid © 2025
+            `;
+            aboutPanel.classList.add('expanded');
+        } else {
+            aboutPanel.innerHTML = 'this website';
+            aboutPanel.classList.remove('expanded');
+        }
+    }
+  </script>
+</body>
+</html>

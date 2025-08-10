@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="data/logo.png" id="favicon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dewan Mukto - Author, Developer & Creative Professional</title>
+    <meta name="description" content="Portfolio of Dewan Mukto - Acclaimed author, software developer, and creative professional. Explore books, designs, videos, and professional journey." />
+    <meta name="keywords" content="Dewan Mukto, author, developer, books, fiction, portfolio, creative professional, Bangladesh, Canada" />
+    <meta name="author" content="Dewan Mukto" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dewan Mukto - Author, Developer & Creative Professional" />
+    <meta property="og:description" content="Portfolio of Dewan Mukto - Acclaimed author, software developer, and creative professional. Explore his books, designs, videos, and professional journey." />
+    <meta property="og:image" content="data/logo.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Dewan Mukto - Author, Developer & Creative Professional" />
+    <meta property="twitter:description" content="Portfolio of Dewan Mukto - Acclaimed author, software developer, and creative professional. Explore his books, designs, videos, and professional journey." />
+    <meta property="twitter:image" content="data/logo.png" />
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.dribbble.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/futura-std-4" rel="stylesheet">
+    
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Dewan Mukto",
+      "jobTitle": ["Author", "Software Developer", "Creative Professional"],
+      "description": "Acclaimed author, software developer, and creative professional",
+      "url": "https://dewanmukto.muxday.com",
+      "sameAs": [
+        "https://github.com/dewanmukto",
+        "https://medium.com/dewanmukto"
+      ],
+      "worksFor": [
+        {
+          "@type": "Organization",
+          "name": "Bongojukti"
+        },
+        {
+          "@type": "Organization", 
+          "name": "Mux AI"
+        }
+      ],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Memorial University of Newfoundland"
+      },
+      "nationality": "Bangladeshi",
+      "knowsLanguage": ["English", "Bengali"]
+    }
+    </script>
+
+    <!-- Iconify (Solar icons) -->
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLY6KQM7SQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZLY6KQM7SQ');
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <!-- Header with Navigation -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <!-- Logo/Brand -->
+          <div class="brand">
+            <div class="brand-icon">
+              <span class="iconify" data-icon="solar:user-bold-duotone"></span>
+            </div>
+            <div class="brand-text">
+              <h1 class="brand-name">Dewan Mukto</h1>
+              <p class="brand-tagline">Author & Developer</p>
+            </div>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="search-container">
+            <div class="search-box">
+              <span class="iconify search-icon" data-icon="solar:magnifer-bold-duotone"></span>
+              <input type="text" id="searchInput" placeholder="Search portfolio..." />
+              <div id="searchResults" class="search-results"></div>
+            </div>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <span class="iconify" data-icon="solar:moon-bold-duotone"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <div class="container">
+        <ul class="tab-list">
+          <li><button class="tab-btn active" data-tab="about">
+            <span class="iconify" data-icon="solar:user-heart-bold-duotone"></span>
+            <span>About</span>
+          </button></li>
+          <li><button class="tab-btn" data-tab="achievements">
+            <span class="iconify" data-icon="solar:medal-star-bold-duotone"></span>
+            <span>Achievements</span>
+          </button></li>
+          <li><button class="tab-btn" data-tab="education">
+            <span class="iconify" data-icon="solar:book-bold-duotone"></span>
+            <span>Education</span>
+          </button></li>
+          <li><button class="tab-btn" data-tab="employment">
+            <span class="iconify" data-icon="solar:case-bold-duotone"></span>
+            <span>Employment</span>
+          </button></li>
+          <li><button class="tab-btn" data-tab="skills">
+            <span class="iconify" data-icon="solar:star-bold-duotone"></span>
+            <span>Skills</span>
+          </button></li>
+          <li><button class="tab-btn" data-tab="projects">
+            <span class="iconify" data-icon="solar:code-bold-duotone"></span>
+            <span>Projects</span>
+          </button></li>
+          <li><button class="tab-btn" data-tab="books">
+            <span class="iconify" data-icon="solar:library-bold-duotone"></span>
+            <span>Books</span>
+          </button></li>
+          <li><button class="tab-btn" data-tab="articles">
+            <span class="iconify" data-icon="solar:document-text-bold-duotone"></span>
+            <span>Articles</span>
+          </button></li>
+          <li><button class="tab-btn" data-tab="designs">
+            <span class="iconify" data-icon="solar:palette-bold-duotone"></span>
+            <span>Designs</span>
+          </button></li>
+          <li><button class="tab-btn" data-tab="memories">
+            <span class="iconify" data-icon="solar:camera-bold-duotone"></span>
+            <span>Memories</span>
+          </button></li>
+          <li><button class="tab-btn" data-tab="videos">
+            <span class="iconify" data-icon="solar:videocamera-bold-duotone"></span>
+            <span>Videos</span>
+          </button></li>
+          <li><button class="tab-btn" data-tab="social">
+            <span class="iconify" data-icon="solar:share-bold-duotone"></span>
+            <span>Social</span>
+          </button></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- About Tab -->
+        <section id="about" class="tab-content active">
+          <div class="hero-section">
+            <div class="hero-content">
+              <div class="hero-text">
+                <h1 class="hero-title">Dewan Mukto</h1>
+                <p class="hero-subtitle">Hobbyist author & poet. Aspiring technocrat, full-time technologist, and part-time scientist.</p>
+                <div class="hero-stats">
+                  <div class="stat-item">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label">Books Published</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Projects</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number">230+</span>
+                    <span class="stat-label">Videos Created</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Years of Experience</span>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual">
+                <div class="profile-card">
+                  <div class="profile-avatar">
+                    <img src="data/my-image-2023.jpg" alt="Dewan Mukto photograph" class="profile-image" />
+                  </div>
+                  <h3>Bringing success as a</h3>
+                  <p>Writer, Designer, Developer, Marketer &amp; More</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Achievements Tab -->
+        <section id="achievements" class="tab-content">
+          <div class="section-header">
+            <h2>Achievements</h2>
+            <p>Recognition and awards throughout my journey</p>
+          </div>
+          <div id="achievements-list" class="achievements-grid"></div>
+        </section>
+
+        <!-- Education Tab -->
+        <section id="education" class="tab-content">
+          <div class="section-header">
+            <h2>Education</h2>
+            <p>Academics and qualifications</p>
+          </div>
+          <div id="education-list" class="education-timeline"></div>
+        </section>
+
+        <!-- Employment Tab -->
+        <section id="employment" class="tab-content">
+          <div class="section-header">
+            <h2>Employment History</h2>
+            <p>Hands-on experience across various industries</p>
+          </div>
+          <div id="employment-list" class="employment-timeline"></div>
+        </section>
+
+        <!-- Skills Tab -->
+        <section id="skills" class="tab-content">
+          <div class="section-header">
+            <h2>Skills & Expertise</h2>
+            <p>Technical and creative competencies</p>
+          </div>
+          <div id="skills-list" class="skills-grid"></div>
+        </section>
+
+        <!-- Projects Tab -->
+        <section id="projects" class="tab-content">
+          <div class="section-header">
+            <h2>Projects</h2>
+            <p>Development and creative projects</p>
+          </div>
+          <div id="projects-list" class="projects-grid"></div>
+        </section>
+
+        <!-- Books Tab -->
+        <section id="books" class="tab-content">
+          <div class="section-header">
+            <h2>Published Books</h2>
+            <p>Literary works spanning multiple genres</p>
+          </div>
+          <div id="books-list" class="books-grid"></div>
+        </section>
+
+        <!-- Articles Tab -->
+        <section id="articles" class="tab-content">
+          <div class="section-header">
+            <h2>Articles & Blog Posts</h2>
+            <p>Thoughts on writing, technology, and creative expression</p>
+          </div>
+          
+          <!-- Filter Controls -->
+          <div class="articles-filters">
+            <div class="filter-group">
+              <label for="yearFilter">Year:</label>
+              <select id="yearFilter">
+                <option value="">All Years</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="tagFilter">Tag:</label>
+              <select id="tagFilter">
+                <option value="">All Tags</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <button id="clearFilters" class="clear-filters-btn">Clear Filters</button>
+            </div>
+          </div>
+          
+          <div id="articles-list" class="articles-grid"></div>
+        </section>
+
+        <!-- Designs Tab -->
+        <section id="designs" class="tab-content">
+          <div class="section-header">
+            <h2>Design Portfolio</h2>
+            <p>UI/UX projects and graphic designs</p>
+          </div>
+          <div id="designs-list" class="designs-grid"></div>
+        </section>
+
+        <!-- Memories Tab -->
+        <section id="memories" class="tab-content">
+          <div class="section-header">
+            <h2>Memories</h2>
+            <p>A visual journey through moments and experiences</p>
+          </div>
+          <div id="memories-list" class="memories-masonry"></div>
+        </section>
+
+        <!-- Videos Tab -->
+        <section id="videos" class="tab-content">
+          <div class="section-header">
+            <h2>Video Content</h2>
+            <p>Featured videos, vlogs and showcases</p>
+          </div>
+          <div id="videos-list" class="videos-grid"></div>
+        </section>
+
+        <!-- Social Tab -->
+        <section id="social" class="tab-content">
+          <div class="section-header">
+            <h2>Connect with Me</h2>
+            <p>Find out more about what I do</p>
+          </div>
+          <div id="social-list" class="social-grid"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Video Player</h3>
+          <button class="modal-close" id="closeModal">
+            <span class="iconify" data-icon="solar:close-circle-bold-duotone"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="videoContainer" class="video-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

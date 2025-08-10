@@ -1,0 +1,89 @@
+[
+  {
+    "institution": "Anandaniketan School",
+    "board": "Pearson Edexcel",
+    "degree": "IGCSE",
+    "start_date": "2006",
+    "end_date": "2019",
+    "grades": {
+      "Physics": "9",
+      "Chemistry": "9",
+      "Biology": "9",
+      "Mathematics": "9",
+      "ICT": "9",
+      "English": "9",
+      "Bengali": "9",
+      "Further Pure Mathematics": "9"
+    },
+    "credits_completed": null,
+    "location": {
+      "city": "Sylhet",
+      "country": "Bangladesh 🇧🇩"
+    }
+  },
+  {
+    "institution": "Anandaniketan School",
+    "board": "Pearson Edexcel",
+    "degree": "IAS",
+    "start_date": "2019",
+    "end_date": "2020",
+    "grades": {
+      "Physics": "A",
+      "Chemisty": "A",
+      "Mathematics": "A",
+      "Further Mathematics": "A"
+    },
+    "credits_completed": null,
+    "location": {
+      "city": "Sylhet",
+      "country": "Bangladesh 🇧🇩"
+    }
+  },
+  {
+    "institution": "Memorial University of Newfoundland and Labrador",
+    "board": null,
+    "degree": "Bachelor of Science (BSc)",
+    "start_date": "Sep 2020",
+    "end_date": "Dec 2023",
+    "grades": {
+      "Computer Science": "3.06/4.00"
+    },
+    "credits_completed": "83 CH",
+    "location": {
+      "city": "St. John's",
+      "country": "Canada 🇨🇦"
+    }
+  },
+  {
+    "institution": null,
+    "board": "Pearson Edexcel",
+    "degree": "IA2",
+    "start_date": "Jan 2024",
+    "end_date": "Jun 2024",
+    "grades": {
+      "Mathematics": "A",
+      "Physics": "B",
+      "Chemistry": "C"
+    },
+    "credits_completed": null,
+    "location": {
+      "city": "Sylhet",
+      "country": "Bangladesh 🇧🇩"
+    }
+  },
+  {
+    "institution": "BRAC University",
+    "board": null,
+    "degree": "Bachelor of Science (BSc)",
+    "start_date": "Oct 2024",
+    "end_date": "Present",
+    "grades": {
+      "Computer Science": null
+    },
+    "credits_completed": null,
+    "location": {
+      "city": "Dhaka",
+      "country": "Bangladesh 🇧🇩"
+    }
+  }
+]

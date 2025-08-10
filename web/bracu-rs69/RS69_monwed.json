@@ -1,0 +1,202 @@
+{
+  "days": ["Monday", "Wednesday"],
+  "slots": [
+    "9.00AM-10.20AM",
+    "10.40AM-12.00PM",
+    "12.40PM-2.00PM",
+    "2.10PM-3.30PM"
+  ],
+  "schedule": {
+    "BANGLA": {
+      "104": {
+        "9.00AM-10.20AM": "RS S02/Dr. Sowmit Joydip",
+        "10.40AM-12.00PM": "RS S14/Dr. Sowmit Joydip",
+        "12.40PM-2.00PM": "RS S26/Rejaul Karim Raju",
+        "2.10PM-3.30PM": "RS S40/Rejaul Karim Raju"
+      },
+      "105": {
+        "9.00AM-10.20AM": "RS S04/Dr. Ismile Saadi",
+        "10.40AM-12.00PM": "RS S16/Dr. Ismile Saadi",
+        "12.40PM-2.00PM": "RS S28/Dr. Nelima Tabassum",
+        "2.10PM-3.30PM": "RS S42/Dr. Ismile Saadi"
+      },
+      "201": {
+        "9.00AM-10.20AM": "RS S06/Raiyan Rajee",
+        "10.40AM-12.00PM": "RS S18/Dr. Shamima Akhter",
+        "12.40PM-2.00PM": "RS S30/Raiyan Rajee",
+        "2.10PM-3.30PM": "RS S44/Dr. Shamima Akhter"
+      },
+      "202": {
+        "9.00AM-10.20AM": "RS S08/Parvin Akter",
+        "10.40AM-12.00PM": "RS S20/Parvin Akter",
+        "12.40PM-2.00PM": "RS S32/Dr. Mahfuza Hilali",
+        "2.10PM-3.30PM": "RS S46/Parvin Akter"
+      },
+      "203": {
+        "9.00AM-10.20AM": "RS S10/Chaitee Chakraborty",
+        "10.40AM-12.00PM": "RS S22/Suraya Khatun",
+        "12.40PM-2.00PM": "RS S34/Chaitee Chakraborty",
+        "2.10PM-3.30PM": "RS S48/Suraya Khatun"
+      },
+      "204": {
+        "9.00AM-10.20AM": "RS S12/Hasan Talukder",
+        "10.40AM-12.00PM": "RS S24/Rahad Hossain",
+        "12.40PM-2.00PM": "RS S36/Hasan Talukder",
+        "2.10PM-3.30PM": "RS S50/Rahad Hossain"
+      },
+      "205": {
+        "9.00AM-10.20AM": "",
+        "10.40AM-12.00PM": "",
+        "12.40PM-2.00PM": "RS S38/Dr. Nemai Mondal",
+        "2.10PM-3.30PM": "RS S52/Shahanaj Parvin"
+      }
+    },
+    "BU": {
+      "206": {
+        "9.00AM-10.20AM": "RS S52/Shaiya B Mahbub",
+        "10.40AM-12.00PM": "RS S48/Shaiya B Mahbub",
+        "12.40PM-2.00PM": "RS S44/Shaiya B Mahbub",
+        "2.10PM-3.30PM": ""
+      },
+      "301": {
+        "9.00AM-10.20AM": "RS S50/Chathuri K. Weerasinghe",
+        "10.40AM-12.00PM": "RS S46/Chathuri K. Weerasinghe",
+        "12.40PM-2.00PM": "RS S42/Chathuri K. Weerasinghe",
+        "2.10PM-3.30PM": ""
+      }
+    },
+    "ENGLISH": {
+      "302": {
+        "9.00AM-10.20AM": "RS S40/Mehetaz Chowdhury",
+        "10.40AM-12.00PM": "RS S32/Nipa Nasrin",
+        "12.40PM-2.00PM": "RS S24/Mehetaz Chowdhury",
+        "2.10PM-3.30PM": "RS S12/Nipa Nasrin"
+      },
+      "303": {
+        "9.00AM-10.20AM": "RS S38/Farina Haque",
+        "10.40AM-12.00PM": "RS S30/Sharmin Sultana Rima",
+        "12.40PM-2.00PM": "RS S22/Effat Hyder",
+        "2.10PM-3.30PM": "RS S10/Sharmin Sultana Rima"
+      },
+      "304": {
+        "9.00AM-10.20AM": "RS S36/Ahmed Aushmita Taimee",
+        "10.40AM-12.00PM": "RS S28/Nashrah Sharfuddin",
+        "12.40PM-2.00PM": "RS S20/Farina Haque",
+        "2.10PM-3.30PM": "RS S08/Nashrah Sharfuddin"
+      },
+      "305": {
+        "9.00AM-10.20AM": "RS S34/Shahnawaz Hossain",
+        "10.40AM-12.00PM": "RS S26/Jannatul Ferdous",
+        "12.40PM-2.00PM": "RS S18/Ahmed Aushmita Taimee",
+        "2.10PM-3.30PM": "RS S06/Jannatul Ferdous"
+      },
+      "401": {
+        "9.00AM-10.20AM": "",
+        "10.40AM-12.00PM": "",
+        "12.40PM-2.00PM": "RS S16/Priti Paul",
+        "2.10PM-3.30PM": "RS S04/Priti Paul"
+      },
+      "402": {
+        "9.00AM-10.20AM": "",
+        "10.40AM-12.00PM": "",
+        "12.40PM-2.00PM": "RS S14/Shahnawaz Hossain",
+        "2.10PM-3.30PM": "RS S02/Shahnawaz Hossain"
+      },
+      "403": {
+        "9.00AM-10.20AM": "",
+        "10.40AM-12.00PM": "",
+        "12.40PM-2.00PM": "",
+        "2.10PM-3.30PM": ""
+      }
+    },
+    "HUM": {
+      "404": {
+        "9.00AM-10.20AM": "RS S01/Tanvir Ahmed",
+        "10.40AM-12.00PM": "RS S13/Sahib Nihal",
+        "12.40PM-2.00PM": "RS S27/Tanvir Ahmed",
+        "2.10PM-3.30PM": "RS S41/Sahib Nihal"
+      },
+      "405": {
+        "9.00AM-10.20AM": "RS S03/Mostafizur Rahman Masuk",
+        "10.40AM-12.00PM": "RS S15/Showmik Joy Bhowmik",
+        "12.40PM-2.00PM": "RS S29/Mostafizur Rahman Masuk",
+        "2.10PM-3.30PM": "RS S43/Showmik Joy Bhowmik"
+      },
+      "406": {
+        "9.00AM-10.20AM": "RS S05/Tanjila Habib",
+        "10.40AM-12.00PM": "RS S17/Fazlul Haque Maruf",
+        "12.40PM-2.00PM": "RS S31/Tanjila Habib",
+        "2.10PM-3.30PM": "RS S45/Tanjila Habib"
+      },
+      "407": {
+        "9.00AM-10.20AM": "RS S07/Nirnoy Islam",
+        "10.40AM-12.00PM": "RS S19/Rudmila Mahbub",
+        "12.40PM-2.00PM": "RS S33/Nirnoy Islam",
+        "2.10PM-3.30PM": "RS S47/Rudmila Mahbub"
+      },
+      "408": {
+        "9.00AM-10.20AM": "RS S09/Ananda Antahleene",
+        "10.40AM-12.00PM": "RS S21/Mouri Mahajabin",
+        "12.40PM-2.00PM": "RS S35/Ananda Antahleene",
+        "2.10PM-3.30PM": "RS S49/Mouri Mahajabin"
+      },
+      "501": {
+        "9.00AM-10.20AM": "RS S11/Priyanka Chak",
+        "10.40AM-12.00PM": "RS S23/Bayazid Islam",
+        "12.40PM-2.00PM": "RS S37/Priyanka Chak",
+        "2.10PM-3.30PM": "RS S51/Priyanka Chak"
+      },
+      "502": {
+        "9.00AM-10.20AM": "",
+        "10.40AM-12.00PM": "RS S25/Shifat Amreen",
+        "12.40PM-2.00PM": "RS S39/Shifat Amreen",
+        "2.10PM-3.30PM": "RS S53/Bayazid Islam"
+      }
+    },
+    "EMB": {
+      "503": {
+        "9.00AM-10.20AM": "RS S53/Syeda Fatima Zamila",
+        "10.40AM-12.00PM": "RS S39/Sawban Ibn Farid",
+        "12.40PM-2.00PM": "RS S25/Syeda Fatima Zamila",
+        "2.10PM-3.30PM": ""
+      },
+      "504": {
+        "9.00AM-10.20AM": "RS S51/Nasrin Sultana",
+        "10.40AM-12.00PM": "RS S37/Zubayer Alam",
+        "12.40PM-2.00PM": "RS S23/Nasrin Sultana",
+        "2.10PM-3.30PM": "RS S11/Zubayer Alam"
+      },
+      "505": {
+        "9.00AM-10.20AM": "RS S49/Abu Sadat Nurullah",
+        "10.40AM-12.00PM": "RS S35/Dr. Jayashree Sarma",
+        "12.40PM-2.00PM": "RS S21/Abu Sadat Nurullah",
+        "2.10PM-3.30PM": "RS S09/Dr. Jayashree Sarma"
+      },
+      "506": {
+        "9.00AM-10.20AM": "RS S47/Aly Al Srijohn",
+        "10.40AM-12.00PM": "RS S33/Nishat Farzana",
+        "12.40PM-2.00PM": "RS S19/Aly Al Srijohn",
+        "2.10PM-3.30PM": "RS S07/Nishat Farzana"
+      },
+      "507": {
+        "9.00AM-10.20AM": "RS S45/Ikhtiarl Arefeen",
+        "10.40AM-12.00PM": "RS S31/Istiaque Hossain Molla",
+        "12.40PM-2.00PM": "RS S17/Ikhtiarl Arefeen",
+        "2.10PM-3.30PM": "RS S05/Istiaque Hossain Molla"
+      },
+      "508": {
+        "9.00AM-10.20AM": "RS S43/Mortaza Mahmud Tohan",
+        "10.40AM-12.00PM": "RS S29/Mortaza Mahmud Tohan",
+        "12.40PM-2.00PM": "RS S15/Fatema Mahmuda",
+        "2.10PM-3.30PM": "RS S03/Mortaza Mahmud Tohan"
+      },
+      "601": {
+        "9.00AM-10.20AM": "RS S41/Samin Farhan Asef",
+        "10.40AM-12.00PM": "RS S27/Samin Farhan Asef",
+        "12.40PM-2.00PM": "RS S13/Sayed Abu Touab Shakir",
+        "2.10PM-3.30PM": "RS S01/Sayed Abu Touab Shakir"
+      }
+    }
+  }
+}
+

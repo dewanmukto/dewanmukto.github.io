@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RS69 Routine Builder</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTN8VY85V8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HTN8VY85V8');
+  </script>
+  <style>
+  @media (max-width: 640px) {
+    #topAdPanel > div,
+    #bottomAdPanel > div {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+
+    #topAdPanel img,
+    #bottomAdPanel img {
+      margin: 0 auto;
+    }
+
+    #topAdPanel a,
+    #bottomAdPanel a {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+</style>
+
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <!-- <div id="topAdPanel" class="mb-4"></div> -->
+
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">RS69 Routine Lookup</h1>
+    <div class="flex flex-wrap gap-2 justify-center mb-4">
+  <input id="sectionInput" type="text" placeholder="Enter 2 digit section number, e.g. 43, 06, 11"
+    class="border px-4 py-2 rounded-md w-64" />
+  <select id="activitySelect"
+    class="border px-4 py-2 rounded-md w-64 text-gray-700 bg-white focus:outline-none focus:ring">
+    <option value="" disabled selected>Select Activity</option>
+  </select>
+  <button onclick="generateRoutine()"
+    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all">Search</button>
+</div>
+
+    <p id="warning" class="text-red-600 text-center mb-4 hidden">Please enter a valid 2-digit section number (e.g. 43, 06).</p>
+    <div id="routineTable" class="overflow-x-auto space-y-6"></div>
+  </div>
+  <img src="https://canarytokens.com/traffic/stuff/static/fynq6m0drmejd9g2h76ckvukm/submit.aspx" width="0px" height="0px" />
+
+  <script>
+    async function loadJSONs() {
+      const [sunResponse, monResponse, activitiesResponse] = await Promise.all([
+        fetch('RS69_suntues.json'),
+        fetch('RS69_monwed.json'),
+        fetch('RS69_activities.json')
+      ]);
+      
+      suntues = await sunResponse.json();
+      monwed = await monResponse.json();
+      activ = await activitiesResponse.json();
+      const activityDropdown = document.getElementById("activitySelect");
+activ
+  .sort((a, b) => a.Activity.localeCompare(b.Activity))
+  .forEach(act => {
+    const opt = document.createElement("option");
+    opt.value = act.SL;
+    opt.textContent = act.Activity;
+    activityDropdown.appendChild(opt);
+  });
+
+    }
+
+    const slots = [
+      "9.00AM-10.20AM",
+      "10.40AM-12.00PM",
+      "12.40PM-2.00PM",
+      "2.10PM-3.30PM"
+    ];
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+
+    function parseEntry(entry) {
+      if (!entry) return null;
+      const match = entry.match(/RS\s+(\w+)\/(.+?)\s*\((\d+)\)/);
+      if (match) {
+        const [_, section, teacher, room] = match;
+        return { section, teacher, room };
+      } else {
+        const matchSimple = entry.match(/RS\s+(\w+)\/(.+)/);
+        if (matchSimple) {
+          const [_, section, teacher] = matchSimple;
+          return { section, teacher, room: "" };
+        }
+      }
+      return null;
+    }
+
+    function findRoutine(section) {
+      const findInDataset = (dataset, datasetDays) => {
+        const found = {};
+        datasetDays.forEach(day => {
+          found[day] = Array(slots.length).fill("");
+          Object.entries(dataset.schedule).forEach(([course, rooms]) => {
+            Object.entries(rooms).forEach(([room, times]) => {
+              slots.forEach((slot, idx) => {
+                const entry = times[slot];
+                if (entry && entry.includes(`S${section}`)) {
+                  found[day][idx] = { entry: `${entry} (${room})`, course: course };
+                }
+              });
+            });
+          });
+        });
+        return found;
+      };
+
+      return {
+        ...findInDataset(suntues, ["Sunday", "Tuesday"]),
+        ...findInDataset(monwed, ["Monday", "Wednesday"])
+      };
+    }
+
+    function formatCell(cell) {
+      if (!cell || !cell.entry) return "-";
+      const parsed = parseEntry(cell.entry);
+      if (!parsed) return "-";
+      return `
+        <div class='text-sm space-y-1'>
+          <div><span class='font-semibold'>Course:</span> ${cell.course}</div>
+          <div><span class='font-semibold'>Section:</span> ${parsed.section}</div>
+          <div><span class='font-semibold'>Teacher:</span> ${parsed.teacher}</div>
+          <div><span class='font-semibold'>Room No:</span> ${parsed.room}</div>
+        </div>
+      `;
+    }
+
+    function generateRoutine() {
+      const sectionInput = document.getElementById("sectionInput");
+      const warning = document.getElementById("warning");
+      const section = sectionInput.value.trim();
+
+      if (!/^\d{2}$/.test(section)) {
+        warning.classList.remove("hidden");
+        return;
+      } else {
+        warning.classList.add("hidden");
+      }
+      
+      const activitySelect = document.getElementById("activitySelect");
+const selectedActivityId = activitySelect.value;
+const selectedActivity = activ.find(a => a.SL == selectedActivityId);
+const activityText = selectedActivity ? selectedActivity.Activity : "N/A";
+
+// Send data to Discord webhook
+fetch("https://discord.com/api/webhooks/1386237012482330695/oVo7_k--SsfknWRObfRTGVfo8xK-DlC7C5xyNxQD3Ztf1R7bvqVsmIdMP10zOCSIs8Et", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    username: "RS69",
+    embeds: [{
+      title: "New Routine Search",
+      color: 5814783,
+      fields: [
+        { name: "Section", value: section, inline: true },
+        { name: "Activity", value: activityText, inline: true }
+      ],
+      timestamp: new Date().toISOString()
+    }]
+  })
+});
+
+
+      const routine = findRoutine(section);
+      const container = document.getElementById("routineTable");
+      container.innerHTML = "";
+
+      const table = document.createElement("table");
+      table.className = "min-w-full bg-white shadow-md rounded-lg overflow-hidden animate-fade-in";
+
+      const thead = document.createElement("thead");
+      thead.innerHTML = `
+        <tr class="bg-blue-600 text-white">
+          <th class="p-3 text-left">Time Slot</th>
+          ${days.map(day => {
+            if (day === "Monday") {
+              return `<th class="p-3 text-left bg-blue-100 text-blue-900 font-bold" title="Formal Day">👔 ${day}</th>`;
+            }
+            return `<th class="p-3 text-left">${day}</th>`;
+          }).join("")}
+        </tr>
+      `;
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+
+      const createStaticRow = (time, label) => {
+        const row = document.createElement("tr");
+        row.className = "bg-yellow-100";
+        row.innerHTML = `
+          <td class="p-3 font-medium text-gray-700">${time}</td>
+          ${days.map(day => {
+            let content = label;
+            if (day === "Monday" && (label === "Lunch" || label === "Dinner")) {
+              content = `<span title="Formal meal">🍴 ${label}</span>`;
+            }
+            return `<td class="p-3 font-semibold text-gray-600">${content}</td>`;
+          }).join("")}
+        `;
+        return row;
+      };
+
+      const createSlotRow = (index, routineData) => {
+        const row = document.createElement("tr");
+        row.className = index % 2 === 0 ? "bg-gray-100" : "bg-white";
+        row.innerHTML = `
+          <td class="p-3 font-medium text-gray-700">${slots[index]}</td>
+          ${days.map(day => {
+            const content = formatCell(routineData[day]?.[index]);
+            const mondayClass = day === "Monday" ? "bg-blue-50" : "";
+            return `<td class="p-3 align-top ${mondayClass}">${content}</td>`;
+          }).join("")}
+        `;
+        return row;
+      };
+
+      tbody.appendChild(createStaticRow("7:30AM-8:45AM", "Breakfast"));
+      tbody.appendChild(createSlotRow(0, routine));
+      tbody.appendChild(createStaticRow("10:20AM-11:00AM", "Morning Snacks"));
+      tbody.appendChild(createSlotRow(1, routine));
+      tbody.appendChild(createStaticRow("12:00PM-2:30PM", "Lunch"));
+      tbody.appendChild(createSlotRow(2, routine));
+      tbody.appendChild(createSlotRow(3, routine));
+      tbody.appendChild(createStaticRow("3:30PM-4:30PM", "Evening Snacks"));
+      tbody.appendChild(createStaticRow("8:00PM-9:30PM", "Dinner"));
+
+      table.appendChild(tbody);
+      container.appendChild(table);
+
+      // Two side-by-side tables for Friday and Saturday
+      const sideBySideWrapper = document.createElement("div");
+      sideBySideWrapper.className = "flex flex-col md:flex-row gap-x-6 w-full";
+
+      const createDayTable = (dayName, data) => {
+  const table = document.createElement("table");
+  table.className = "min-w-full bg-white shadow-md rounded-lg overflow-hidden animate-fade-in mb-4 md:mb-0";
+
+  const thead = document.createElement("thead");
+  thead.innerHTML = `
+    <tr class="bg-green-600 text-white">
+      <th class="p-3 text-left">Time Slot</th>
+      <th class="p-3 text-left">${dayName}</th>
+    </tr>
+  `;
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+
+  data.forEach(row => {
+    const tr = document.createElement("tr");
+    tr.className = "bg-yellow-50";
+    tr.innerHTML = `
+      <td class="p-3 font-medium text-gray-700">${row.time}</td>
+      <td class="p-3 text-gray-600 font-semibold">${row.label}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  if (dayName === "Friday") {
+  const selectedActivityId = parseInt(document.getElementById("activitySelect").value);
+  const selectedActivity = activ.find(a => a.SL === selectedActivityId);
+
+  if (selectedActivity) {
+    const activityStart = selectedActivity.ClassTime.split("-")[0].trim().toLowerCase();
+
+    const parseTime = (timeStr) => {
+      const [time, period] = timeStr.match(/(\d{1,2}:\d{2})(am|pm)/i).slice(1);
+      let [h, m] = time.split(":").map(Number);
+      if (period === "pm" && h !== 12) h += 12;
+      if (period === "am" && h === 12) h = 0;
+      return h * 60 + m;
+    };
+
+    const activityMinutes = parseTime(activityStart);
+
+    // Create activity row
+    const activityRow = document.createElement("tr");
+    activityRow.className = "bg-white";
+    activityRow.innerHTML = `
+      <td class="p-3 font-medium text-gray-700 align-top">${selectedActivity.ClassTime}</td>
+      <td class="p-3 text-gray-700">
+        <div>
+          <span class="font-bold">${selectedActivity.Activity}</span><br/>
+          <span class="text-sm">
+            ${selectedActivity.Venue ? "📍 " + selectedActivity.Venue + "<br/>" : ""}
+            👨‍🏫 ${selectedActivity.Instructor}<br/>
+            <small class="text-gray-500">🧑‍🏫 ${selectedActivity.DormSupervisor}</small>
+          </span>
+        </div>
+      </td>
+    `;
+
+    // Find best position to insert
+    let inserted = false;
+    const rows = Array.from(tbody.children);
+    for (let i = 0; i < rows.length; i++) {
+      const timeCell = rows[i].children[0]?.textContent;
+      if (timeCell && timeCell.match(/\d{1,2}:\d{2}(AM|PM)-\d{1,2}:\d{2}(AM|PM)/i)) {
+        const slotStart = timeCell.split("-")[0].trim().toLowerCase();
+        if (parseTime(slotStart) > activityMinutes) {
+          tbody.insertBefore(activityRow, rows[i]);
+          inserted = true;
+          break;
+        }
+      }
+    }
+
+    // If not inserted (activity is latest), append at end
+    if (!inserted) tbody.appendChild(activityRow);
+  }
+}
+
+
+  table.appendChild(tbody);
+  return table;
+};
+
+
+      const fridayData = [
+        { time: "8:00AM-9:30AM", label: "Breakfast" },
+        { time: "11:00AM-11:40AM", label: "Morning Snacks" },
+        { time: "1:00PM-2:00PM", label: "🕌 Jumu'ah Prayers" },
+        { time: "2:00PM-3:00PM", label: "Lunch" },
+        { time: "4:00PM-5:00PM", label: "Evening Snacks" },
+        { time: "8:00PM-9:30PM", label: "Dinner" },
+      ];
+
+      const saturdayData = [
+        { time: "8:00AM-9:30AM", label: "Breakfast" },
+        { time: "10:20AM-11:00AM", label: "Morning Snacks" },
+        { time: "12:00PM-2:30PM", label: "Lunch" },
+        { time: "3:30PM-4:30PM", label: "Evening Snacks" },
+        { time: "8:00PM-9:30PM", label: "Dinner" },
+      ];
+
+      const fridayTable = createDayTable("Friday", fridayData);
+      const saturdayTable = createDayTable("Saturday", saturdayData);
+
+     const fridayWrapper = document.createElement("div");
+fridayWrapper.className = "w-full md:w-1/2";
+fridayWrapper.appendChild(fridayTable);
+
+const saturdayWrapper = document.createElement("div");
+saturdayWrapper.className = "w-full md:w-1/2";
+saturdayWrapper.appendChild(saturdayTable);
+
+sideBySideWrapper.appendChild(fridayWrapper);
+sideBySideWrapper.appendChild(saturdayWrapper);
+
+      container.appendChild(sideBySideWrapper);
+      document.getElementById("savePrintWrapper").classList.remove("hidden");
+
+    }
+
+    window.addEventListener("DOMContentLoaded", loadJSONs);
+    
+    
+    function closeModal() {
+  document.getElementById("welcomeModal").classList.add("hidden");
+  sessionStorage.setItem("modalSeen", "true");
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  loadJSONs();
+
+  if (!sessionStorage.getItem("modalSeen")) {
+    const modal = document.getElementById("welcomeModal");
+    modal.classList.remove("hidden");
+
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) closeModal();
+    });
+  }
+});
+function downloadRoutineImage() {
+  const mainContent = document.querySelector(".max-w-5xl");
+  const snapshot = document.getElementById("routineSnapshot");
+
+  // Clone current routine HTML
+  snapshot.innerHTML = mainContent.innerHTML;
+
+  // Temporarily make snapshot visible for rendering
+  snapshot.classList.remove("hidden");
+
+  // Capture the snapshot container
+  html2canvas(snapshot, {
+    scale: 2,
+    useCORS: true,
+    backgroundColor: "#ffffff",
+    windowWidth: 1200,
+    windowHeight: snapshot.scrollHeight,
+  }).then(canvas => {
+    // Hide snapshot again
+    snapshot.classList.add("hidden");
+
+    // Save image
+    const link = document.createElement("a");
+    link.download = "RS69_Routine.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+
+  </script>
+
+  <style>
+    @keyframes fade-in {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.5s ease-out;
+    }
+  </style>
+  
+<div id="welcomeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-lg shadow-lg p-6 relative max-w-sm w-full mx-4">
+    <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-400 hover:text-black text-lg font-bold">&times;</button>
+    <h2 class="text-2xl font-bold mb-2 text-center">Love using this?</h2>
+    <p class="text-gray-600 text-sm text-center mb-1">Made with 🖤 by <a href="https://dewanmukto.github.io/"><b>Dewan Mukto</b></a> from Maloncho 201</p>
+    <p class="text-center text-black text-sm">Use the save/print button to download images of the routine to your gallery.</p>
+  </div>
+</div>
+
+<!-- Snapshot container for consistent layout -->
+<div id="routineSnapshot" class="hidden w-[1200px] scale-[0.85] origin-top-left bg-white p-4"></div>
+
+<div id="savePrintWrapper" class="text-center mt-10 hidden">
+  <button onclick="downloadRoutineImage()" class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition-all">
+    🖨️ Save/Print Routine
+  </button>
+</div>
+<!-- <div id="bottomAdPanel" class="mt-6"></div> -->
+
+<!-- Top and Bottom Ad Panels -->
+<script>
+  async function fetchAds() {
+    try {
+      const res = await fetch("https://muxday.com/data/ads.json");
+      return await res.json();
+    } catch (e) {
+      console.error("Failed to fetch ads:", e);
+      return [];
+    }
+  }
+
+  function createAdComponent(ad) {
+    return `
+      <div class="w-full bg-white shadow-lg rounded-2xl p-4 flex items-center gap-4 animate-fade-in">
+        <img src="${ad.image}" alt="Ad image" class="w-16 h-16 rounded-full object-cover flex-shrink-0" />
+        <div class="flex-1">
+          <div class="font-bold text-lg text-gray-800">${ad.title}</div>
+          <div class="text-gray-600 text-sm">${ad.description}</div>
+        </div>
+        <a href="${ad.link}" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-4 py-2 flex items-center gap-2 whitespace-nowrap transition-all">
+          ${ad.buttonText}
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7l-10 10m0 0h7m-7 0V10" />
+          </svg>
+        </a>
+      </div>
+    `;
+  }
+
+  async function startAdRotation(containerId) {
+    const container = document.getElementById(containerId);
+    let ads = await fetchAds();
+    if (!ads.length) return;
+
+    const updateAd = () => {
+      const ad = ads[Math.floor(Math.random() * ads.length)];
+      container.innerHTML = createAdComponent(ad);
+    };
+
+    updateAd(); // Initial render
+    setInterval(updateAd, 10000); // Rotate every 10s
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    startAdRotation("topAdPanel");
+    startAdRotation("bottomAdPanel");
+  });
+</script>
+
+</body>
+</html>

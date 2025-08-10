@@ -1,0 +1,108 @@
+[
+  {
+    "title": "In The Wildest Dimensions",
+    "cover": "https://dewanmukto.github.io/asset/images/ITWD_cover.png",
+    "blurb": "Unbeknownst to a detective on vacation, he falls down a staircase of disaster as his life begins to take form in the shape of desperation surrounded by guilt. Police work had been bothering him … a story of memory loss and trust, and how truth is often warped in ways we don't understand.",
+    "metadata": {
+      "category": "Fiction",
+      "genres": ["Psychological", "Thriller", "Mystery"],
+      "yearWritten": 2024,
+      "yearPublished": 2024,
+      "pages": 124,
+      "isbns": ["9798880533060"]
+    },
+    "purchaseLinks": [
+      {"vendor":"Amazon","edition":"Hardcover","price":"USD 20.01","region":"International / North America"},
+      {"vendor":"The Nile","edition":"Hardcover","price":"AUD 44.03","region":"Australia"},
+      {"vendor":"eBay UK","edition":"Hardcover","price":"GBP 42.70","region":"United Kingdom"}
+    ]
+  },
+  {
+    "title": "Prison of Sentience",
+    "cover": "https://dewanmukto.github.io/asset/images/PrisonOfSentience_cover.png",
+    "blurb": "No official blurb available, but the title suggests a speculative/science-fiction narrative exploring themes of consciousness, captivity, and perhaps AI — fitting the author’s style.",
+    "metadata": {
+      "category": "Fiction",
+      "genres": ["Science Fiction", "Speculative"],
+      "yearWritten": 2022,
+      "yearPublished": 2022,
+      "isbns": [],
+      "pages": null
+    },
+    "purchaseLinks": [
+      {"vendor":"Webnovel","edition":"e-book","price":"Varies","region":"International"}
+    ]
+  },
+  {
+    "title": "Synaesthetic Symphonies",
+    "cover": "https://dewanmukto.github.io/asset/images/SynSym_cover.png",
+    "blurb": "A compilation of aesthetic poetry written by Dewan Mukto during his high school days in 2018–19. Featuring textual artworks spanning three episodes: Nature, Emotion, and Abstract.",
+    "metadata": {
+      "category": "Fiction",
+      "genres": ["Poetry", "Abstract"],
+      "yearWritten": 2019,
+      "yearPublished": 2023,
+      "pages": 46,
+      "isbns": ["9798210806901","9788881314690"]
+    },
+    "purchaseLinks": [
+      {"vendor":"Indigo","edition":"Hardcover","price":"CAD 92.96","region":"Canada"},
+      {"vendor":"Lehmanns","edition":"Hardcover","price":"EUR 79.50","region":"Germany"},
+      {"vendor":"eBay UK","edition":"Hardcover","price":"GBP 63.72","region":"United Kingdom"}
+    ]
+  },
+  {
+    "title": "Dead Man Alive",
+    "cover": "https://dewanmukto.github.io/asset/images/DMA_cover.png",
+    "blurb": "An unsuspecting NYPD officer encounters a freak weather storm, lands at a café, and discovers an unending layer of reality enticed by cultists… events without source, powers without meaning, endings without time.",
+    "metadata": {
+      "category": "Fiction",
+      "genres": ["Horror", "Paranormal", "Psychological"],
+      "yearWritten": 2017,
+      "yearPublished": 2023,
+      "pages": 32,
+      "isbns": ["9781446740972"]
+    },
+    "purchaseLinks": [
+      {"vendor":"Lulu","edition":"International Paperback","price":"USD 5.82","region":"International / North America"},
+      {"vendor":"Amazon","edition":"Hardcover","price":"USD 29.99","region":"International / North America"},
+      {"vendor":"The Book Shelf BD","edition":"Paperback","price":"BDT 185.00","region":"Bangladesh"}
+    ]
+  },
+  {
+    "title": "IELTS Guide",
+    "cover": "https://dewanmukto.github.io/asset/images/IELTS_cover.png",
+    "blurb": "A guide to help IELTS candidates aggressively rip and tear down their fears and confusions about IELTS and build confidence — by the author who scored 8.5 overall. A student reader scored 8.0 after studying the manuscript.",
+    "metadata": {
+      "category": "Non-fiction",
+      "genres": ["Language", "Self‑help"],
+      "yearWritten": 2020,
+      "yearPublished": 2023,
+      "pages": 32,
+      "isbns": ["9798210806888","9781446741153"]
+    },
+    "purchaseLinks": [
+      {"vendor":"Lulu","edition":"International Paperback","price":"USD 5.10","region":"International / North America"},
+      {"vendor":"Amazon","edition":"Paperback","price":"USD 14.99","region":"International / North America"},
+      {"vendor":"The Book Shelf BD","edition":"Paperback","price":"BDT 180.00","region":"Bangladesh"}
+    ]
+  },
+  {
+    "title": "Cooper Black",
+    "cover": "https://dewanmukto.github.io/asset/images/CooperBlack_cover.png",
+    "blurb": "American outlaws try to reclaim the money they lent to other criminals… foreign troops invade the US, and it's up to the reckless outlaws—pure agents of chaos—to bring peace.",
+    "metadata": {
+      "category": "Fiction",
+      "genres": ["Action", "Science Fiction", "Humor"],
+      "yearWritten": 2016,
+      "yearPublished": 2022,
+      "pages": 472,
+      "isbns": ["9798880654475","9781446748886","9781446638897","9781446640715"]
+    },
+    "purchaseLinks": [
+      {"vendor":"Lulu","edition":"Classic Paperback","price":"USD 23.00","region":"International / North America"},
+      {"vendor":"Lulu","edition":"10 Year Hardcover","price":"USD 28.99","region":"International / North America"},
+      {"vendor":"The Book Shelf BD","edition":"Paperback","price":"BDT 245.00","region":"Bangladesh"}
+    ]
+  }
+]
