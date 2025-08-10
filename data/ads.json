@@ -1,0 +1,51 @@
+[
+  {
+    "title": "MuxSocial",
+    "description": "Social platform without boundaries or bias",
+    "image": "https://muxday.vercel.app/favicon.png",
+    "link": "https://muxday.vercel.app/",
+    "buttonText": "Sign Up"
+  },
+  {
+    "title": "Disorder",
+    "description": "Anonymous peer-to-peer chat and file sharing platform with no database, no persistent storage and no server",
+    "image": "https://disorderchat.web.app/asset/img/favicon.png",
+    "link": "https://exalux.github.io/disorder/",
+    "buttonText": "Try Now"
+  },
+  {
+    "title": "Order your RS69 merch!",
+    "description": "Get a memorable piece of RS69 for the future years of your life.",
+    "image": "https://scontent.fdac181-1.fna.fbcdn.net/v/t39.30808-6/515067134_1289579892761957_8026037847255806933_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeF9Wya-SGigoJclnBSxc5lJZp6s1NY4UwlmnqzU1jhTCYQQSa06ykqv9An7RnPetajM0wHIJ7zsEw2yEs8tU1ss&_nc_ohc=6ZE5gDkv2WQQ7kNvwEGXROG&_nc_oc=AdnpLxDCyyQytQsU1OtktqWhiuC8_y7IHileBdmaaA2HksOUATDo1FWgQsRjn2DnfdM&_nc_zt=23&_nc_ht=scontent.fdac181-1.fna&_nc_gid=Q-87OyRA1WGcs03DDhWfGw&oh=00_AfS-PDb2hmxhT8oUy84TXrKYKXW3s8gwCzGpclAxhMM7Gw&oe=68913053",
+    "link": "https://docs.google.com/forms/d/e/1FAIpQLScDRb2pSMjM5MAsfgr3WT2tczcm5rrMA14WUdYPdywL4fnukw/viewform",
+    "buttonText": "Order Now"
+  },
+ {
+    "title": "Order your Kushiara merch!",
+    "description": "Get a memorable piece of RS69 for the future years of your life.",
+    "image": "https://scontent.fdac181-1.fna.fbcdn.net/v/t39.30808-6/519481986_750285977479794_7952692263704826458_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFUL9yGXFHU0RBLX0IL1L1kU5wf5uBx7LdTnB_m4HHst16zStBlZvENd27jfRXIwKV542A1oEPtr2sCdX9aQRv7&_nc_ohc=sNUs3Jw1mlwQ7kNvwHRGKet&_nc_oc=AdlAErLzmwsRX3T4T1QRLOgJX-sxBqOsb9ekfPV9LVifujcqKWesiUn8SL0yTEAzJjE&_nc_zt=23&_nc_ht=scontent.fdac181-1.fna&_nc_gid=p3QxXUsFPQjtGvVLDp-zdQ&oh=00_AfQ-dtJeGQq71qZzKlAY1oKrx36VRqbw432FoJDHJhlLlw&oe=68913EBD",
+    "link": "https://docs.google.com/forms/d/e/1FAIpQLSchytuxMHm-nYYp_Dm_YneqzbkP25YQzfrTc1YpdAE7r-spQQ/viewform",
+    "buttonText": "Order Now"
+  },
+  {
+    "title": "Order your Monpura merch!",
+    "description": "Get a memorable piece of RS69 for the future years of your life.",
+    "image": "https://scontent.fdac181-1.fna.fbcdn.net/v/t39.30808-6/525259956_1272695174358008_4165450046306185742_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=103&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeGslOuBqF1Z2IAvT-HkLTt-6HVJo7GgHhrodUmjsaAeGjQaIEzmtMfdf9E3crHPzyMb6uavIBIcu-Nn3jZi0QMg&_nc_ohc=WnRYYVkgPn4Q7kNvwGmc9RT&_nc_oc=AdkNPQb0lM1QVcj7ehaV15zNVjlibj5HvU1ZWqvsPU0l7MihYMMfOaZ3z3C3Jqt-xsA&_nc_zt=23&_nc_ht=scontent.fdac181-1.fna&_nc_gid=TYhw-HEDUDHE7fPsvUaWzg&oh=00_AfQ7q1KhZ1ZEsjAJssafGkTfPL_OkCeTJLWFlxLIuTKgpg&oe=68913BEF",
+    "link": "https://docs.google.com/forms/d/e/1FAIpQLSc0tFeEakNQ2qRYa_jc0NpvLPXxiZmnMIAlk38y1kRP1G8O0g/viewform",
+    "buttonText": "Order Now"
+  },
+{
+    "title": "Real homework help",
+    "description": "Forget about AI, plagiarism and humanizing worries! Get your work done for only 1000 taka per assignment.",
+    "image": "https://wisefield.mux8.com/mobile-security-app/ic_launcher_foreground.webp",
+    "link": "https://homeworkhero.pages.dev/",
+    "buttonText": "Submit"
+  },
+  {
+    "title": "Jammy",
+    "description": "Play/listen to YouTube music videos in peace, without any ads or distractions",
+    "image": "https://jammytube.netlify.app/player/jammyicon.png",
+    "link": "https://s2bd.github.io/youtube-video-dimmer",
+    "buttonText": "Visit"
+  }
+]

@@ -1,0 +1,174 @@
+{
+    "kids_playground": {
+        "description": "Bright and vivid colors for a fun, energetic playground setting.",
+        "colors": ["#FF6347", "#FFEB3B", "#00E676", "#FF4081", "#FF9800"]
+    },
+    "child_bedroom": {
+        "description": "Pastels for a comfy and cozy child’s bedroom.",
+        "colors": ["#FFB6C1", "#F8BBD0", "#D1C4E9", "#C5CAE9", "#B3E5FC"]
+    },
+    "action_game": {
+        "description": "Cool and edgy colors for an action-packed game environment.",
+        "colors": ["#B71C1C", "#F44336", "#FFEB3B", "#FF5722", "#8E24AA"]
+    },
+    "minimalist": {
+        "description": "Simple, clean colors for a minimalist design.",
+        "colors": ["#FFFFFF", "#E0E0E0", "#90A4AE", "#607D8B", "#263238"]
+    },
+    "nature": {
+        "description": "Earthy and natural tones for outdoor or nature-inspired designs.",
+        "colors": ["#4CAF50", "#8BC34A", "#FFEB3B", "#3E8E41", "#2C6F43"]
+    },
+    "retro": {
+        "description": "Vintage and retro color schemes with bold contrasts.",
+        "colors": ["#F44336", "#FFEB3B", "#9C27B0", "#4CAF50", "#FF5722"]
+    },
+    "vintage": {
+        "description": "Warm, faded colors that give a nostalgic vintage feel.",
+        "colors": ["#9E9E9E", "#BDBDBD", "#607D8B", "#795548", "#FF5722"]
+    },
+    "ocean": {
+        "description": "Shades of blue and teal that evoke calm, oceanic vibes.",
+        "colors": ["#00BCD4", "#03A9F4", "#00C853", "#8BC34A", "#1976D2"]
+    },
+    "sunset": {
+        "description": "Warm hues like reds, oranges, and purples inspired by a sunset.",
+        "colors": ["#FF5722", "#FF9800", "#F44336", "#9C27B0", "#673AB7"]
+    },
+    "space": {
+        "description": "Dark tones with hints of neon and metallics for a cosmic feel.",
+        "colors": ["#212121", "#757575", "#00E5FF", "#D32F2F", "#9C27B0"]
+    },
+    "neon": {
+        "description": "Bright neon colors with bold contrasts, perfect for a lively, futuristic design.",
+        "colors": ["#FF4081", "#00E5FF", "#FFEB3B", "#D50000", "#76FF03"]
+    },
+    "forest": {
+        "description": "Earthy greens and browns inspired by deep forest environments.",
+        "colors": ["#2C6B2F", "#4CAF50", "#8B4513", "#A1887F", "#9E9D24"]
+    },
+    "gothic": {
+        "description": "Dark, moody colors for a gothic or mysterious atmosphere.",
+        "colors": ["#263238", "#212121", "#FFEB3B", "#D32F2F", "#9C27B0"]
+    },
+    "tropical": {
+        "description": "Bright and colorful shades inspired by tropical landscapes.",
+        "colors": ["#FFEB3B", "#FF9800", "#F44336", "#009688", "#4CAF50"]
+    },
+    "elegant": {
+        "description": "Sophisticated color tones for an elegant, upscale feel.",
+        "colors": ["#B3B3B3", "#212121", "#795548", "#9E9E9E", "#607D8B"]
+    },
+    "pastel": {
+        "description": "Soft, light pastel shades for a calm, serene design.",
+        "colors": ["#FFB6C1", "#E0E0E0", "#C5CAE9", "#F8BBD0", "#D1C4E9"]
+    },
+    "desert": {
+        "description": "Warm, sandy tones inspired by desert landscapes.",
+        "colors": ["#F57F17", "#8D6E63", "#FF7043", "#795548", "#E64A19"]
+    },
+    "rainforest": {
+        "description": "Deep greens and blues inspired by the lush rainforest.",
+        "colors": ["#4CAF50", "#388E3C", "#00796B", "#81C784", "#B2DFDB"]
+    },
+    "cherry_blossom": {
+        "description": "Soft pinks and whites inspired by the beauty of cherry blossoms.",
+        "colors": ["#F48FB1", "#F8BBD0", "#D1C4E9", "#FFEB3B", "#FFC107"]
+    },
+    "modern": {
+        "description": "Clean, sharp colors that evoke a contemporary, modern look.",
+        "colors": ["#263238", "#607D8B", "#00BCD4", "#FFEB3B", "#9E9E9E"]
+    },
+    "cyberpunk": {
+        "description": "Vibrant, glowing colors with a futuristic, cyberpunk aesthetic.",
+        "colors": ["#00E5FF", "#D50000", "#FF4081", "#9C27B0", "#00C853"]
+    },
+    "autumn": {
+        "description": "Rich, warm colors inspired by autumn leaves.",
+        "colors": ["#FF5722", "#FF9800", "#795548", "#8BC34A", "#FFEB3B"]
+    },
+    "vibrant": {
+        "description": "Bold, eye-catching colors for a dynamic and energetic design.",
+        "colors": ["#FF4081", "#00E5FF", "#FFEB3B", "#D50000", "#76FF03"]
+    },
+    "earthy": {
+        "description": "Warm, earthy colors like browns, greens, and yellows.",
+        "colors": ["#795548", "#FFEB3B", "#8BC34A", "#9E9D24", "#BDBDBD"]
+    },
+    "cool_tones": {
+        "description": "Cool shades of blue, green, and purple for a calm atmosphere.",
+        "colors": ["#00BCD4", "#2196F3", "#3F51B5", "#4CAF50", "#8E24AA"]
+    },
+    "metallic": {
+        "description": "Shiny, metallic shades for a futuristic or high-tech feel.",
+        "colors": ["#B0BEC5", "#FFEB3B", "#9E9E9E", "#607D8B", "#D32F2F"]
+    },
+    "pop_art": {
+        "description": "Bright, bold primary colors with a playful, pop-art style.",
+        "colors": ["#FF0000", "#FFFF00", "#0000FF", "#00FF00", "#FF4081"]
+    },
+    "luxury": {
+        "description": "Rich, opulent colors for a luxury feel.",
+        "colors": ["#9C27B0", "#4CAF50", "#FF5722", "#FFEB3B", "#607D8B"]
+    },
+    "indie": {
+        "description": "Quirky, creative color combinations for an indie vibe.",
+        "colors": ["#FF4081", "#9C27B0", "#00BCD4", "#D32F2F", "#FFEB3B"]
+    },
+    "calm": {
+        "description": "Soft, muted colors for a peaceful, serene environment.",
+        "colors": ["#90A4AE", "#B0BEC5", "#607D8B", "#E0E0E0", "#CFD8DC"]
+    },
+    "neutrals": {
+        "description": "Simple, neutral colors like gray, beige, and white for a balanced design.",
+        "colors": ["#E0E0E0", "#BDBDBD", "#9E9E9E", "#607D8B", "#263238"]
+    },
+    "tropical_fruit": {
+        "description": "Bright colors inspired by tropical fruits like oranges, pineapples, and limes.",
+        "colors": ["#FF9800", "#FFEB3B", "#FF5722", "#76FF03", "#00E5FF"]
+    },
+    "moody": {
+        "description": "Dark, atmospheric colors for a moody, introspective design.",
+        "colors": ["#212121", "#263238", "#FFEB3B", "#FF5722", "#9C27B0"]
+    },
+    "spring": {
+        "description": "Light, fresh colors inspired by the beauty of spring.",
+        "colors": ["#FFEB3B", "#FF4081", "#76FF03", "#00BCD4", "#C5CAE9"]
+    },
+    "neon_pastels": {
+        "description": "Neon-inspired pastels that combine vibrancy and softness.",
+        "colors": ["#FFEB3B", "#FF4081", "#00BCD4", "#76FF03", "#9C27B0"]
+    },
+    "beach": {
+        "description": "Colors inspired by sandy beaches and clear ocean waters.",
+        "colors": ["#00BCD4", "#FFEB3B", "#795548", "#607D8B", "#3E8E41"]
+    },
+    "glamour": {
+        "description": "Elegant, sparkling colors with a glamorous touch.",
+        "colors": ["#FFEB3B", "#9C27B0", "#FF5722", "#D50000", "#FF4081"]
+    },
+    "halloween": {
+        "description": "Spooky, dark colors with a Halloween vibe.",
+        "colors": ["#FF5722", "#FFEB3B", "#212121", "#8E24AA", "#FF4081"]
+    },
+    "royalty": {
+        "description": "Rich, luxurious colors inspired by royal regalia.",
+        "colors": ["#9C27B0", "#3F51B5", "#FFEB3B", "#8E24AA", "#795548"]
+    },
+    "steampunk": {
+        "description": "Vintage colors with a touch of industrial and mechanical design.",
+        "colors": ["#795548", "#BDBDBD", "#FFEB3B", "#FF5722", "#607D8B"]
+    },
+    "popcorn": {
+        "description": "Soft, buttery colors inspired by popcorn and cinema.",
+        "colors": ["#FFEB3B", "#F5F5F5", "#FF5722", "#00BCD4", "#FF4081"]
+    },
+    "mystic": {
+        "description": "Deep, rich colors with a mystical, otherworldly feel.",
+        "colors": ["#212121", "#9C27B0", "#FFEB3B", "#D32F2F", "#263238"]
+    },
+    "chocolate": {
+        "description": "Rich browns and warm, indulgent tones inspired by chocolate.",
+        "colors": ["#795548", "#3E2723", "#D32F2F", "#FF5722", "#F44336"]
+    }
+}
