@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One One One - Character Showcase</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">ONE ONE ONE</div>
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Entering the Realm of Shadows...</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+
+    <div class="cosmic-bg"></div>
+    
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">
+                <span class="logo-text">ONE ONE ONE</span>
+                <span class="logo-subtitle">Enter the Realm of Shadows</span>
+            </h1>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#factions" class="nav-link">Factions</a>
+                <a href="#characters" class="nav-link">Characters</a>
+                <a href="#world" class="nav-link">World</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2 class="hero-title">The Soul's Thrill Begins!</h2>
+                    <p class="hero-description">
+                        Enter a world flavored and diseased by action and competition. From typical anime superpowers to insane acts of heroism, you shall taste every flavor for a perfect anime series in novel format!
+                    </p>
+                    <p class="hero-subtitle">
+                        In a world of demons, shadows and parallel dimensions, factions of good and evil exist in a blend of science and magic.
+                    </p>
+                    <button class="cta-button" onclick="scrollToSection('factions')">
+                        <span>Explore Factions</span>
+                        <div class="button-glow"></div>
+                    </button>
+                </div>
+                <div class="hero-visual">
+                    <div class="energy-orb"></div>
+                    <div class="floating-particles"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="factions" class="factions">
+            <div class="container">
+                <h2 class="section-title">Choose Your Faction</h2>
+                <div class="factions-grid">
+                    <div class="faction-card akamine" data-faction="akamine">
+                        <div class="faction-header">
+                            <div class="faction-symbol">⚔️</div>
+                            <h3 class="faction-name">The Akaminé</h3>
+                            <span class="faction-color">Red Warriors</span>
+                        </div>
+                        <div class="faction-content">
+                            <p class="faction-description">
+                                Hard-working warriors, obeying the rules of tradition and helping to fight the evil forces with their fine-tuned skills and knowledge. Their vision is empowered by the members' ancestors, who wish to confirm that all of evil remains extinct.
+                            </p>
+                            <div class="faction-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Strength</span>
+                                    <div class="stat-bar"><div class="stat-fill" style="width: 95%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Tradition</span>
+                                    <div class="stat-bar"><div class="stat-fill" style="width: 100%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Honor</span>
+                                    <div class="stat-bar"><div class="stat-fill" style="width: 90%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="faction-glow akamine-glow"></div>
+                    </div>
+
+                    <div class="faction-card alkyne" data-faction="alkyne">
+                        <div class="faction-header">
+                            <div class="faction-symbol">🌙</div>
+                            <h3 class="faction-name">The Alkyne</h3>
+                            <span class="faction-color">Purple Diplomats</span>
+                        </div>
+                        <div class="faction-content">
+                            <p class="faction-description">
+                                Clever demon slayers, sometimes willing to even befriend demons as allies. They wish to establish a line of friendship between mankind and 'the vile ones', so that all lifeforms can live in eternal harmony.
+                            </p>
+                            <div class="faction-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Intelligence</span>
+                                    <div class="stat-bar"><div class="stat-fill" style="width: 100%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Diplomacy</span>
+                                    <div class="stat-bar"><div class="stat-fill" style="width: 95%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Magic</span>
+                                    <div class="stat-bar"><div class="stat-fill" style="width: 85%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="faction-glow alkyne-glow"></div>
+                    </div>
+
+                    <div class="faction-card sirutov" data-faction="sirutov">
+                        <div class="faction-header">
+                            <div class="faction-symbol">⚡</div>
+                            <h3 class="faction-name">The Sirutov</h3>
+                            <span class="faction-color">Yellow Guardians</span>
+                        </div>
+                        <div class="faction-content">
+                            <p class="faction-description">
+                                A military-run and technologically-advanced group. Formed when all the soldiers of Kantyne agreed to unite for a common cause. Their objective is supporting and helping people through all dangers and disasters.
+                            </p>
+                            <div class="faction-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Technology</span>
+                                    <div class="stat-bar"><div class="stat-fill" style="width: 100%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Unity</span>
+                                    <div class="stat-bar"><div class="stat-fill" style="width: 95%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Protection</span>
+                                    <div class="stat-bar"><div class="stat-fill" style="width: 90%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="faction-glow sirutov-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="characters" class="characters">
+            <div class="container">
+                <h2 class="section-title">Legendary Characters</h2>
+                <div class="character-showcase">
+                    <div class="character-card">
+                        <div class="character-image">
+                            <div class="character-placeholder akamine-char">
+                                <span class="character-initial">A</span>
+                            </div>
+                        </div>
+                        <div class="character-info">
+                            <h3 class="character-name">Akira Tenshin</h3>
+                            <span class="character-faction akamine-text">Akaminé Warrior</span>
+                            <span class="character-rank">S-Rank Warrior</span>
+                        </div>
+                    </div>
+
+                    <div class="character-card">
+                        <div class="character-image">
+                            <div class="character-placeholder alkyne-char">
+                                <span class="character-initial">L</span>
+                            </div>
+                        </div>
+                        <div class="character-info">
+                            <h3 class="character-name">Luna Shadowmend</h3>
+                            <span class="character-faction alkyne-text">Alkyne Diplomat</span>
+                            <span class="character-rank">A-Rank Diplomat</span>
+                        </div>
+                    </div>
+
+                    <div class="character-card">
+                        <div class="character-image">
+                            <div class="character-placeholder sirutov-char">
+                                <span class="character-initial">Z</span>
+                            </div>
+                        </div>
+                        <div class="character-info">
+                            <h3 class="character-name">Zara Voltforge</h3>
+                            <span class="character-faction sirutov-text">Sirutov Commander</span>
+                            <span class="character-rank">S-Rank Commander</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Character Modal -->
+        <div id="characterModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-character-image" id="modalCharacterImage">
+                        <span class="character-initial" id="modalCharacterInitial">A</span>
+                    </div>
+                    <button class="close-modal" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="modal-character-name" id="modalCharacterName">Character Name</h2>
+                    <p class="modal-character-faction" id="modalCharacterFaction">Faction</p>
+                    <p class="modal-character-description" id="modalCharacterDescription">Character description goes here.</p>
+                    
+                    <div class="character-stats">
+                        <div class="stat-group">
+                            <h4>Combat Stats</h4>
+                            <div class="stat-item">
+                                <span class="stat-label">Strength</span>
+                                <span class="stat-value" id="statStrength">95</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Speed</span>
+                                <span class="stat-value" id="statSpeed">88</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Defense</span>
+                                <span class="stat-value" id="statDefense">92</span>
+                            </div>
+                        </div>
+                        <div class="stat-group">
+                            <h4>Special Stats</h4>
+                            <div class="stat-item">
+                                <span class="stat-label">Magic</span>
+                                <span class="stat-value" id="statMagic">75</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Intelligence</span>
+                                <span class="stat-value" id="statIntelligence">85</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Charisma</span>
+                                <span class="stat-value" id="statCharisma">70</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="character-abilities">
+                        <h4>Special Abilities</h4>
+                        <div class="abilities-grid" id="modalAbilities">
+                            <!-- Abilities will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="world" class="world">
+            <div class="container">
+                <h2 class="section-title">The World of One One One</h2>
+                <div class="world-grid">
+                    <div class="world-feature">
+                        <div class="feature-icon">🌌</div>
+                        <h3>Parallel Dimensions</h3>
+                        <p>Multiple realities collide as heroes traverse between worlds, each with its own rules and dangers.</p>
+                    </div>
+                    <div class="world-feature">
+                        <div class="feature-icon">👹</div>
+                        <h3>Demons & Shadows</h3>
+                        <p>Ancient evils and mysterious entities that challenge the very fabric of existence.</p>
+                    </div>
+                    <div class="world-feature">
+                        <div class="feature-icon">⚗️</div>
+                        <h3>Science & Magic</h3>
+                        <p>A unique blend where advanced technology meets mystical powers in epic confrontations.</p>
+                    </div>
+                    <div class="world-feature">
+                        <div class="feature-icon">⚔️</div>
+                        <h3>Epic Battles</h3>
+                        <p>Intense action sequences featuring supernatural abilities and strategic combat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p id="footerText">&copy; 2024 Dewan Mukto and respective intellectual property owners.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
