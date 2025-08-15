@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dewan Mukto Surveys — Fashion Trends Pulse</title>
+
+  <!-- Iconify (Solar icons) -->
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-p+1K6mK1H0jv2u2Y4yI1c7c7sNQh0p4Q9OQyq9s3Q8K6Q7Qv3y6Pq4nK5Xg2Zl3o9r1x1a2b3c4d5e6f7g8h9==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* Reset + base */
+    :root{
+      --accent1: #ff0a45;
+      --accent2: #ff3b67;
+      --bg: #0b0b0b;
+      --card: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.06);
+      --muted: #bfc3c7;
+      --text: #eff0f1;
+      --glass-border: rgba(255,255,255,0.07);
+      --shadow: 0 6px 24px rgba(3,6,12,0.6);
+      font-synthesis: none;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--text);background:linear-gradient(180deg,#060606 0%, #0f0f10 100%);-webkit-font-smoothing:antialiased}
+
+    /* Diagonal tessellating wordmark background */
+    .brand-tiler{position:fixed;inset:0;overflow:hidden;z-index:0;opacity:0.16;pointer-events:none}
+    .brand-row{display:flex;gap:28px;align-items:center}
+    .tiler-strip{position:absolute;white-space:nowrap;display:flex;gap:28px;align-items:center}
+    .tiler-strip img{height:36px;filter:invert(0) grayscale(1) contrast(120%);opacity:0.95}
+
+    /* animate diagonal movement */
+    @keyframes slideDiag{from{transform:translate3d(-30%, -30%,0)} to{transform:translate3d(30%,30%,0)}}
+    .tiler-strip{animation:slideDiag 40s linear infinite}
+
+    /* Layout */
+    .wrap{position:relative;min-height:100vh;display:grid;grid-template-columns:360px 1fr;gap:28px;padding:36px;align-items:start}
+
+    /* Left nav / brand */
+    .sidebar{position:sticky;top:28px;height:calc(100vh - 56px);padding:20px;border-radius:14px;background:linear-gradient(135deg,var(--card), rgba(255,255,255,0.02));backdrop-filter: blur(10px);border:1px solid var(--glass-border);box-shadow:var(--shadow)}
+    .brand{display:flex;gap:12px;align-items:center;margin-bottom:16px}
+    .brand img{height:22px;filter:invert(1)}
+    .brand h1{font-size:18px;margin:0;font-weight:600;letter-spacing:0.2px}
+    .subtitle{color:var(--muted);font-size:13px;margin-top:6px}
+
+    .progress-wrap{margin-top:18px}
+    .progress{height:10px;width:100%;background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+    .progress>i{display:block;height:100%;width:28%;background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 6px 18px rgba(255,10,69,0.12)}
+
+    .sidebar .help{margin-top:18px;font-size:13px;color:var(--muted);line-height:1.4}
+
+    /* Main form card */
+    .card{padding:28px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--glass-border);backdrop-filter: blur(8px);box-shadow:var(--shadow)}
+    .card h2{margin:0 0 8px 0;font-size:20px}
+    .lead{color:var(--muted);margin:0 0 18px 0}
+
+    form{display:grid;gap:18px}
+
+    /* question block */
+    .q{display:block}
+    .q label{display:block;font-weight:600;margin-bottom:8px}
+    .q label:before{content:"";display:inline-block;width:18px;height:18px;margin-right:8px;vertical-align:middle}
+    .q label[for="age"]:before{content:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="%23eff0f1" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>')}
+    .q label[for="frequency"]:before{content:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="%23eff0f1" stroke-width="2" d="M3 9h18M7 3v18"/></svg>')}
+    .q label[for="colors"]:before{content:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="%23eff0f1" stroke-width="2" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>')}
+    .q label[for="minimalDial"]:before{content:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="%23eff0f1" stroke-width="2" d="M12 2v10m0 0l-3-3m3 3l3-3"/></svg>')}
+    .q label[for="presence"]:before{content:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="%23eff0f1" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>')}
+    .q label[for="music"]:before{content:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="%23eff0f1" stroke-width="2" d="M20 4v12m0 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2V4M8 4v12m0 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2V4"/></svg>')}
+    .q label[for="sleep"]:before{content:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="%23eff0f1" stroke-width="2" d="M3 12h18M12 3v18"/></svg>')}
+    .q label[for="discovery"]:before{content:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="%23eff0f1" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>')}
+    .q label[for="notes"]:before{content:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="%23eff0f1" stroke-width="2" d="M3 3h18v18H3zM9 9h6m-6 4h6m-6 4h6"/></svg>')}
+    .q label[for="contact"]:before{content:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="%23eff0f1" stroke-width="2" d="M4 4h16v16H4zM8 8h8m-8 4h8m-8 4h8"/></svg>')}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* segmented controls for choices */
+    .segmented{display:flex;gap:10px;flex-wrap:wrap}
+    .segmented button{appearance:none;border:1px solid rgba(255,255,255,0.04);background:transparent;padding:10px 14px;border-radius:10px;color:var(--text);min-width:110px;text-align:center;cursor:pointer;transition:all .18s ease;font-weight:600}
+    .segmented button:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(3,6,12,0.6)}
+    .segmented button.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;border:0;box-shadow:0 12px 30px rgba(255,10,69,0.12)}
+
+    /* multi option chips */
+    .chips{display:flex;gap:10px;flex-wrap:wrap}
+    .chip{padding:8px 12px;background:transparent;border-radius:999px;border:1px solid rgba(255,255,255,0.04);cursor:pointer;font-weight:600}
+    .chip.active{background:rgba(255,10,69,0.4);border-color:rgba(255,255,255,0.06);transform:translateY(-2px)}
+
+    /* range dial */
+    .dial-wrap{display:flex;gap:16px;align-items:center}
+    .dial{appearance:none;width:240px;height:6px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));outline:none}
+    .dial::-webkit-slider-thumb{appearance:none;width:20px;height:20px;border-radius:50%;background:linear-gradient(180deg,var(--accent1),var(--accent2));box-shadow:0 6px 18px rgba(255,10,69,0.12);border:3px solid rgba(255,255,255,0.06)}
+    .dial-value{font-weight:700;min-width:48px;text-align:center}
+
+    /* textarea */
+    textarea{width:100%;min-height:92px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.4);background:transparent;color:var(--text);resize:vertical}
+
+    /* footer + submit */
+    .footer{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+    .legal{font-size:13px;color:var(--muted)}
+    .submit{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:12px 18px;border-radius:12px;border:0;font-weight:800;cursor:pointer;box-shadow:0 12px 28px rgba(255,10,69,0.12);transition:transform .12s ease}
+    .submit:active{transform:translateY(2px)}
+
+    /* social/email field */
+    .contact-wrap{display:flex;gap:12px;align-items:center}
+    .contact-field{flex:1;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.4);background:transparent;color:var(--text)}
+    .contact-hint{font-size:13px;color:var(--muted)}
+
+    /* footer bottom */
+    footer.site-footer{margin-top:34px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* crisp icons */
+    .icon-sq{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+
+    /* responsive */
+    @media (max-width:920px){.wrap{grid-template-columns:1fr;padding:22px}.sidebar{display:none}}
+  </style>
+</head>
+<body>
+
+  <!-- tessellating wordmark background (JS clones rows diagonally) -->
+  <div class="brand-tiler" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <aside class="sidebar card" role="complementary">
+      <div class="brand">
+        <img src="https://dewanmukto.com/asset/images/wordmark_logo.png" alt="Dewan Mukto Surveys" />
+        <div>
+          <h1>Dewan Mukto Surveys</h1>
+          <div class="subtitle">Modern • Minimal • Adaptive</div>
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="muted">Progress</div>
+        <div class="progress" aria-hidden="true"><i></i></div>
+      </div>
+
+      <p class="help">This survey takes <strong>~60 seconds</strong>. Pick the answers — we'll do the heavy lifting. Your choices will help our brand design better products.</p>
+
+      <div style="margin-top:18px;font-size:13px;color:var(--muted)">
+        Your privacy comes first. We don't ask for personal info and all responses are anonymous. Optional contact is only for offers, if you are interested.
+      </div>
+
+    </aside>
+
+    <main>
+      <section class="card">
+        <h2>Fashion Trends Pulse — 2025</h2>
+        <p class="lead">Tell us about your style and preferences in just 1 minute. Your responses will help us understand the target market better, allowing us to create products suited exactly the way you love it.</p>
+
+        <form id="survey">
+
+          <div class="q">
+            <label for="age">1) Age range</label>
+            <div class="segmented" role="radiogroup" data-field="age">
+              <button type="button" data-value="13-17">13–17</button>
+              <button type="button" data-value="18-24">18–24</button>
+              <button type="button" data-value="25-34">25–34</button>
+              <button type="button" data-value="35-44">35–44</button>
+              <button type="button" data-value="45+">45+</button>
+            </div>
+            <div class="muted">Select the range that best fits you.</div>
+          </div>
+
+          <div class="q">
+            <label for="frequency">2) How often do you buy clothing?</label>
+            <div class="segmented" data-field="frequency">
+              <button type="button" data-value="Weekly">Weekly</button>
+              <button type="button" data-value="Monthly">Monthly</button>
+              <button type="button" data-value="Quarterly">Quarterly</button>
+              <button type="button" data-value="Yearly">Yearly</button>
+              <button type="button" data-value="Rarely">Rarely</button>
+            </div>
+          </div>
+
+          <div class="q">
+            <label for="colors">3) Favorite color families (pick up to 3)</label>
+            <div class="chips" data-field="colors">
+              <div class="chip" data-value="Bright">Bright</div>
+              <div class="chip" data-value="Subtle">Subtle</div>
+              <div class="chip" data-value="Pastel">Pastel</div>
+              <div class="chip" data-value="Dark">Dark</div>
+              <div class="chip" data-value="Light">Light</div>
+              <div class="chip" data-value="Neutral">Neutral</div>
+            </div>
+            <div class="muted">Tap up to three — quick, visual, and mobile-friendly.</div>
+          </div>
+
+          <div class="q">
+            <label for="minimalDial">4) How likely are you to buy minimalist clothing?</label>
+            <div class="dial-wrap">
+              <input class="dial" id="minimalDial" type="range" min="0" max="100" step="10" value="50" data-field="minimal_likelihood">
+              <div class="dial-value" id="minimalVal">50%</div>
+              <div class="muted">0 = Not at all • 100 = Definitely</div>
+            </div>
+          </div>
+
+          <div class="q">
+            <label for="presence">5) Do you prefer blending in or standing out?</label>
+            <div class="segmented" data-field="presence">
+              <button type="button" data-value="Blend In">Blend into the crowd</button>
+              <button type="button" data-value="Stand Out">Stand out</button>
+              <button type="button" data-value="Depends">Depends (occasion)</button>
+            </div>
+          </div>
+
+          <div class="q">
+            <label for="music">6) What's your favorite music band / singer?</label>
+            <div class="segmented" data-field="music">
+              <button type="button" data-value="Pop Artist">Pop artist</button>
+              <button type="button" data-value="Indie / Alternative">Indie / Alternative</button>
+              <button type="button" data-value="Hip-Hop / Rap">Hip-Hop / Rap</button>
+              <button type="button" data-value="Rock / Metal">Rock / Metal</button>
+              <button type="button" data-value="Classical / Jazz">Classical / Jazz</button>
+              <button type="button" data-value="Other">Other</button>
+            </div>
+            <div class="muted">Pick the closest match — we'll let you add specifics in the notes.</div>
+          </div>
+
+          <div class="q">
+            <label for="sleep">7) How many hours of sleep do you typically get per night?</label>
+            <div class="segmented" data-field="sleep">
+              <button type="button" data-value="&lt;5">&lt;5 hrs</button>
+              <button type="button" data-value="5-6">5–6 hrs</button>
+              <button type="button" data-value="6-7">6–7 hrs</button>
+              <button type="button" data-value="7-8">7–8 hrs</button>
+              <button type="button" data-value=">8">>8 hrs</button>
+            </div>
+          </div>
+
+          <div class="q">
+            <label for="discovery">8) Where do you discover new fashion? (pick up to 3)</label>
+            <div class="chips" data-field="discovery">
+              <div class="chip" data-value="Instagram">Instagram <i class="fa-brands fa-instagram" style="margin-left:8px"></i></div>
+              <div class="chip" data-value="Facebook">Facebook <i class="fa-brands fa-facebook" style="margin-left:8px"></i></div>
+              <div class="chip" data-value="Discord">Discord <i class="fa-brands fa-discord" style="margin-left:8px"></i></div>
+              <div class="chip" data-value="TikTok">TikTok <i class="fa-brands fa-tiktok" style="margin-left:8px"></i></div>
+              <div class="chip" data-value="YouTube">YouTube <i class="fa-brands fa-youtube" style="margin-left:8px"></i></div>
+              <div class="chip" data-value="In-store">In-store</div>
+            </div>
+          </div>
+
+          <div class="q">
+            <label for="notes">9) Any quick notes or favorites? (optional)</label>
+            <textarea id="notes" data-field="notes" placeholder="Share a brand, outfit, or quick thought... (optional)"></textarea>
+          </div>
+
+          <div class="q">
+            <label for="contact">Contact (optional) — so we can tell you about exclusive discounts and early drops</label>
+            <div class="contact-wrap">
+              <input class="contact-field" id="contact" data-field="contact" type="text" aria-label="email or social link" value="" />
+            </div>
+            <div class="contact-hint">Drop an email or link to your social profile (we'll only use it to announce offers). Totally optional, but you'll get first dibs!</div>
+          </div>
+
+          <div class="footer">
+            <div class="legal">No personal data required • All responses will be anonymous</div>
+            <div style="display:flex;gap:10px;align-items:center">
+              <button type="button" class="submit" id="submitFooter">Submit Survey</button>
+            </div>
+          </div>
+
+        </form>
+
+        <footer class="site-footer">© 2025 Dewan Mukto Co.</footer>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Build tessellating brand rows
+    (function(){
+      const tile = document.querySelector('.brand-tiler');
+      const imgURL = 'https://dewanmukto.com/asset/images/wordmark_logo.png';
+      const rows = 8;
+      for(let r=0;r<rows;r++){
+        const strip = document.createElement('div');
+        strip.className='tiler-strip';
+        strip.style.top = (r*12 - 20) + '%';
+        strip.style.left = (r%2?'-20%':'-10%');
+        strip.style.transform = 'rotate(-14deg)';
+        // clone many images
+        for(let i=0;i<40;i++){
+          const im = document.createElement('img');
+          im.src = imgURL;
+          im.alt='Dewan Mukto Surveys';
+          strip.appendChild(im);
+        }
+        tile.appendChild(strip);
+      }
+    })();
+
+    // UI interaction logic
+    document.querySelectorAll('.segmented').forEach(group => {
+      const isRadio = group.getAttribute('role') === 'radiogroup' || group.dataset.field;
+      group.addEventListener('click', e => {
+        const btn = e.target.closest('button');
+        if(!btn) return;
+        // radio behavior: single select
+        [...group.querySelectorAll('button')].forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        updateProgress();
+      });
+    });
+
+    // chips multi-select (limit 3)
+    document.querySelectorAll('.chips').forEach(chipGroup => {
+      const limit = 3;
+      chipGroup.addEventListener('click', e => {
+        const chip = e.target.closest('.chip');
+        if(!chip) return;
+        const active = chip.classList.toggle('active');
+        const activeCount = chipGroup.querySelectorAll('.chip.active').length;
+        if(active && activeCount>limit){ chip.classList.remove('active'); }
+        updateProgress();
+      });
+    });
+
+    // dial live value
+    const dial = document.getElementById('minimalDial');
+    const dval = document.getElementById('minimalVal');
+    dial.addEventListener('input', ()=>{ dval.textContent = dial.value + '%'; updateProgress(); });
+
+    // progress calculation (very simple)
+    function updateProgress(){
+      const totalQs = 9;
+      let filled = 0;
+      // age
+      if(document.querySelector('[data-field="age"] .active')) filled++;
+      // freq
+      if(document.querySelector('[data-field="frequency"] .active')) filled++;
+      // colors
+      if(document.querySelectorAll('[data-field="colors"] .chip.active').length>0) filled++;
+      // dial always counts as answered
+      if(dial.value) filled++;
+      // presence
+      if(document.querySelector('[data-field="presence"] .active')) filled++;
+      // music
+      if(document.querySelector('[data-field="music"] .active')) filled++;
+      // sleep
+      if(document.querySelector('[data-field="sleep"] .active')) filled++;
+      // discovery
+      if(document.querySelectorAll('[data-field="discovery"] .chip.active').length>0) filled++;
+      // notes optional -> if filled, count
+      if(document.getElementById('notes').value.trim()!=='') filled++;
+      const pct = Math.round((filled/totalQs)*100);
+      document.querySelector('.progress>i').style.width = pct + '%';
+    }
+
+    // collect answers and build CSV
+    function buildCSV(){
+      const headers = [
+        'timestamp','age_range','frequency','favorite_colors','minimal_likelihood','blend_preference','music_genre','sleep_hours','discovery_channels','notes','contact'
+      ];
+      const rows = [];
+      const timestamp = new Date().toISOString();
+      const age = (document.querySelector('[data-field="age"] .active')||{}).dataset?.value || '';
+      const freq = (document.querySelector('[data-field="frequency"] .active')||{}).dataset?.value || '';
+      const colors = Array.from(document.querySelectorAll('[data-field="colors"] .chip.active')).map(c=>c.dataset.value).join('|');
+      const minimal = document.querySelector('#minimalDial').value;
+      const presence = (document.querySelector('[data-field="presence"] .active')||{}).dataset?.value || '';
+      const music = (document.querySelector('[data-field="music"] .active')||{}).dataset?.value || '';
+      const sleep = (document.querySelector('[data-field="sleep"] .active')||{}).dataset?.value || '';
+      const discovery = Array.from(document.querySelectorAll('[data-field="discovery"] .chip.active')).map(c=>c.dataset.value).join('|');
+      const notes = document.getElementById('notes').value.replace(/\r?\n/g,' ');
+      const contact = document.getElementById('contact').value.trim();
+
+      const values = [timestamp,age,freq,colors,minimal,presence,music,sleep,discovery,`"${notes.replace(/"/g,'""')}"`,contact];
+      // create CSV string (one header row + one row)
+      const csv = headers.join(',') + '\n' + values.join(',');
+      return csv;
+    }
+
+    // send to discord webhook as content (CSV payload). NOTE: Discord may block large messages; we send as code block to preserve formatting.
+    async function sendToWebhook(csvText){
+      const wh = 'https://discord.com/api/webhooks/1405791518186541078/K_znYLlCCiStEihbiUPXZGl32S4mL-VoP27ZtGsJ7U-IoWT8-bH5iqXnDYWQXEVna1gd';
+      const body = { content: '```csv\n' + csvText + '\n```' };
+      try{
+        const res = await fetch(wh, {
+          method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)
+        });
+        return res.ok;
+      }catch(e){ console.error(e); return false; }
+    }
+
+    // submission handler
+    async function handleSubmit(){
+      const csv = buildCSV();
+      // optimistic UI
+      const btn = document.getElementById('submitFooter');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      const ok = await sendToWebhook(csv);
+      if(ok){
+        btn.textContent = 'Thanks — Sent!';
+        // subtle confetti alternative (small animation)
+        document.querySelector('.card').style.boxShadow = '0 18px 60px rgba(255,10,69,0.12)';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Submit Survey';
+        alert('Could not send responses to the server. Your data is still available locally; try again.');
+      }
+    }
+
+    document.getElementById('submitFooter').addEventListener('click', handleSubmit);
+
+    // prevent accidental navigation while changes
+    let dirty = false;
+    document.getElementById('survey').addEventListener('input', ()=> dirty=true);
+    window.addEventListener('beforeunload', (e)=>{ if(dirty){ e.preventDefault(); e.returnValue='You have unsaved changes.' }});
+
+    // init
+    updateProgress();
+  </script>
+</body>
+</html>
