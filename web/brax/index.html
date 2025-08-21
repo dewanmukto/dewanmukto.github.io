@@ -300,7 +300,11 @@
     for (const a of A) for (const b of B) if (a.day === b.day) {
       const aS = dayjs(a.start, 'HH:mm:ss'), aE = dayjs(a.end, 'HH:mm:ss');
       const bS = dayjs(b.start, 'HH:mm:ss'), bE = dayjs(b.end, 'HH:mm:ss');
-      if (overlaps(aS, bS, aE, bE)) return { type: 'time', detail: `${a.day} ${a.start}-${a.end}` };
+if (overlaps(aS, aE, bS, bE)) {
+  return { type: 'time', detail: `${a.day} ${a.start}-${a.end} clashes with ${b.start}-${b.end}` };
+}
+
+    
     }
     const exams = (rec) => [
       rec.sectionSchedule?.midExamDate && { date: rec.sectionSchedule.midExamDate, start: rec.sectionSchedule.midExamStartTime, end: rec.sectionSchedule.midExamEndTime, label: 'Mid' },
