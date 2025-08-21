@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Shortener</title>
+  <script>
+    // Define your short codes and redirect URLs here
+    const redirects = {
+      "bng103": "https://drive.google.com/drive/folders/17HSVlL7jOf8H52JwMTGn8XJPB-tzjekM?usp=sharing",
+      "digimark": "https://prezi.com/view/8lcGSQAXpjyGnRLZxK5J/"
+    };
+
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      const key = Array.from(params.keys())[0]; // Get the first query key
+
+      if (redirects[key]) {
+        // Redirect after 0.5 seconds
+        setTimeout(() => {
+          window.location.href = redirects[key];
+        }, 500);
+      } else {
+        document.getElementById("status").textContent = "Invalid or missing short code.";
+      }
+    };
+  </script>
+</head>
+<body>
+  <h2>Redirecting...</h2>
+  <p id="status">Checking short code...</p>
+</body>
+</html>
