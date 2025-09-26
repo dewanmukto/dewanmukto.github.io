@@ -5,7 +5,9 @@
     "technologies": [
       "HTML",
       "TailwindCSS",
-      "NextJS"
+      "NextJS",
+      "jsPDF",
+      "html2canvas"
     ],
     "type": "Webapp",
     "repo": "https://github.com/s2bd/mizu-cv-builder",
