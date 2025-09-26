@@ -1,4 +1,34 @@
 [
+{
+    "title": "Online CV Builder",
+    "description": "Create, update and export your CV from anywhere.",
+    "technologies": [
+      "HTML",
+      "TailwindCSS",
+      "NextJS"
+    ],
+    "type": "Webapp",
+    "repo": "https://github.com/s2bd/mizu-cv-builder",
+    "url": "https://mizucv.vercel.app/",
+    "icon": "https://mi2u.pages.dev/brax/images/furina-genshin-icon.jpg",
+    "problem_solved": "Accessible CV/resume creation for everyone",
+    "category": "Utilities"
+  },
+  {
+    "title": "BRACU Course-to-Routine Builder",
+    "description": "A convenient way for students to compare between sections of courses in real-time with their current selection.",
+    "technologies": [
+      "HTML",
+      "TailwindCSS",
+      "JS"
+    ],
+    "type": "Webapp",
+    "repo": "https://github.com/exalux/mux-social",
+    "url": "https://mi2u.pages.dev/brax/v3/",
+    "icon": "https://www.bracu.ac.bd/sites/all/themes/sloth/images/f-logo.svg",
+    "problem_solved": "Real-time course section information previewing",
+    "category": "BRACU Student Tools"
+  },
   {
     "title": "Mux Social",
     "description": "Social platform without boundaries or bias",
