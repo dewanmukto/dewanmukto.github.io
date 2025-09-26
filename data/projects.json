@@ -23,7 +23,7 @@
       "JS"
     ],
     "type": "Webapp",
-    "repo": "https://github.com/exalux/mux-social",
+    "repo": null,
     "url": "https://mi2u.pages.dev/brax/v3/",
     "icon": "https://www.bracu.ac.bd/sites/all/themes/sloth/images/f-logo.svg",
     "problem_solved": "Real-time course section information previewing",
@@ -41,7 +41,7 @@
       "Vercel Blob"
     ],
     "type": "Webapp",
-    "repo": "https://github.com/exalux/mux-social",
+    "repo": null,
     "url": "https://muxday.vercel.app",
     "icon": "https://muxday.vercel.app/favicon.png",
     "problem_solved": "Open social networking site for anyone, anywhere without external intervention from governments or commercial incentives",
